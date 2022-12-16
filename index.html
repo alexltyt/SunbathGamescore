@@ -10,16 +10,41 @@
 <body>
     <main>
         <div class="section1">
-            <div class="players player1">1</div>
-            <div class="players player2">2</div>
+            <div class="players player1">
+                <div class="score" >
+                    <p id="p1Score">Player 1 score</p>
+                </div>
+            </div>
+            <div class="players player2">
+                <div class="score">
+                    <p id="p2Score">Player 2 score</p>
+                </div>
+            </div>
         </div>
         <div class="section2">
-            <div class="button">button</div>
+            <div class="sect2-1">
+                <input type="number" inputmode="decimal" class="numInput" id="p1ScoreInput"/>
+                <input type="number" inputmode="decimal" class="numInput" id="p2ScoreInput"/>
+                <input type="number" inputmode="decimal" class="numInput" id="p3ScoreInput"/>
+                <input type="number" inputmode="decimal" class="numInput" id="p4ScoreInput"/>
+            </div>
+            <div class="sect2-2">
+                <input type="button" value="Done" id="submit">
+            </div>
         </div>
         <div class="section3">
-            <div class="players player3">3</div>
-            <div class="players player4">4</div>    
-        </div>
+            <div class="players player3">
+                <div class="score">
+                    <p id="p3Score">Player 3 score</p>
+                </div>
+            </div>
+            <div class="players player4">
+                <div class="score">
+                    <p id="p4Score">Player 4 score</p>
+                </div>
+            </div>
+        </div>    
     </main>
+    <script src="./scripts/score.js"></script>
 </body>
 </html>
