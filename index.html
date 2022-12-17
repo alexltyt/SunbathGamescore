@@ -11,14 +11,12 @@
     <main>
         <div class="section1">
             <div class="players player1">
-                <div class="score" >
-                    <p id="p1Score">Player 1 score</p>
-                </div>
+                <div class="name" id="p1Name">player1</div>
+                <div class="score" id="p1Score">0</div>
             </div>
             <div class="players player2">
-                <div class="score">
-                    <p id="p2Score">Player 2 score</p>
-                </div>
+                <div class="name" id="p2Name">player2</div>
+                <div class="score" id="p2Score">0</div>
             </div>
         </div>
         <div class="section2">
@@ -29,22 +27,32 @@
                 <input type="number" inputmode="decimal" class="numInput" id="p4ScoreInput"/>
             </div>
             <div class="sect2-2">
-                <input type="button" value="Done" id="submit">
+                <input type="button" value="Count" id="submit">
+                <input type="button" value="Undo" id="undo">
+                <input type="button" value="Clear" id="clear">
             </div>
         </div>
         <div class="section3">
             <div class="players player3">
-                <div class="score">
-                    <p id="p3Score">Player 3 score</p>
-                </div>
+                <div class="name" id="p3Name">player3</div>
+                <div class="score" id="p3Score">0</div>
             </div>
             <div class="players player4">
-                <div class="score">
-                    <p id="p4Score">Player 4 score</p>
-                </div>
+                <div class="name" id="p4Name">player4</div>
+                <div class="score" id="p4Score">0</div>
             </div>
         </div>    
     </main>
+    <footer>
+        <div class="scoreboardTitle">
+
+        </div>
+        <div class="scoreboard">
+            <div class="eachround">
+                
+            </div>
+        </div>
+    </footer>
     <script src="./scripts/score.js"></script>
 </body>
 </html>
