@@ -1,16 +1,33 @@
+:root{
+    --dark-blue: #25617Dff;
+    --light-blue: #7FD1DBff;
+    --medium-blue: #55BDC9ff;
+    --darker-blue: #062D51ff;
+    --mandarin: #F07C41ff;
+    --flame: #DF622Cff;
+}
+
+*{
+    font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+}
+
+body{
+    background-color: var(--darker-blue);
+    color: var(--darker-blue);
+}
 main{
-    border: red solid 1px;
+    /* border: red solid 1px; */
     display: flex;
     flex-direction: column;
     width: 100%;
 }
 
 .players{
-    border: solid red 1px;
-    border-radius: 30px;
-    background-color:aquamarine;
-    height: 15rem;
-    width: 30%;
+    border: solid var(--flame) 10px;
+    border-radius: 20px;
+    background-color:var(--mandarin);
+    height: 13rem;
+    width: 42%;
     text-align: center;
     display: flex;
     flex-direction: column;
@@ -20,7 +37,27 @@ main{
     margin-right: auto;
 }
 .numInput{
-    width: 3rem;
+    width: 15%;
+    height: 1.5rem;
+    border-radius: 12px;
+    background-color: var(--light-blue);
+    border: solid 3px var(--dark-blue);
+    text-align: center;
+}
+
+.button{
+    width: 15%;
+    height: 1.5rem;
+    border-radius: 8px;
+    background-color: var(--light-blue);
+    border: solid 3px var(--dark-blue);
+}
+
+.sect2-1{
+    margin-top: 1rem;
+    display: flex;
+    justify-content: center;
+    gap: 1.2rem;
 }
 .sect2-2{
     margin-top: 1rem;
@@ -37,10 +74,25 @@ main{
     gap: 1rem;
 }
 .name{
-    margin-top: 10%;
-    font-size: large;
+    margin-top: 1rem;
+    font-size: 1.5rem;
+    font-style: italic;
+    font-weight: bold;
 }
 .score{
-    margin-top: 4rem;
-    font-size:xx-large;
+    margin-top: 2.5rem;
+    font-size: 4rem;;
+    font-weight: bolder;
+}
+.scoreboardTitle{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+}
+footer{
+    background-color: var(--light-blue);
+    width:84%;
+    margin-left: 8%;
+    margin-top: 1.5rem;
+    border-radius: 10px;
 }
