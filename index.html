@@ -4,52 +4,55 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Big2 Calculator</title>
     <link rel="stylesheet" href="./styles/styles.css">
 </head>
 <body>
     <main>
         <div class="section1">
             <div class="players player1">
-                <div class="name" id="p1Name">player1</div>
+                <div class="name" id="p1Name">Player1</div>
                 <div class="score" id="p1Score">0</div>
             </div>
             <div class="players player2">
-                <div class="name" id="p2Name">player2</div>
+                <div class="name" id="p2Name">Player2</div>
                 <div class="score" id="p2Score">0</div>
             </div>
         </div>
         <div class="section2">
             <div class="sect2-1">
-                <input type="number" inputmode="decimal" class="numInput" id="p1ScoreInput"/>
-                <input type="number" inputmode="decimal" class="numInput" id="p2ScoreInput"/>
-                <input type="number" inputmode="decimal" class="numInput" id="p3ScoreInput"/>
-                <input type="number" inputmode="decimal" class="numInput" id="p4ScoreInput"/>
+                <input type="tel" placeholder="Player 1" inputmode="decimal" class="numInput" id="p1ScoreInput"/>
+                <input type="tel" placeholder="Player 2" inputmode="decimal" class="numInput" id="p2ScoreInput"/>
+                <input type="tel" placeholder="Player 3" inputmode="decimal" class="numInput" id="p3ScoreInput"/>
+                <input type="tel" placeholder="Player 4" inputmode="decimal" class="numInput" id="p4ScoreInput"/>
             </div>
             <div class="sect2-2">
-                <input type="button" value="Count" id="submit">
-                <input type="button" value="Undo" id="undo">
-                <input type="button" value="Clear" id="clear">
+                <input type="button" value="Count" class="button" id="submit">
+                <input type="button" value="Undo" class="button" id="undo">
+                <input type="button" value="Clear" class="button" id="clear">
             </div>
         </div>
         <div class="section3">
             <div class="players player3">
-                <div class="name" id="p3Name">player3</div>
+                <div class="name" id="p3Name">Player3</div>
                 <div class="score" id="p3Score">0</div>
             </div>
             <div class="players player4">
-                <div class="name" id="p4Name">player4</div>
+                <div class="name" id="p4Name">Player4</div>
                 <div class="score" id="p4Score">0</div>
             </div>
         </div>    
     </main>
     <footer>
         <div class="scoreboardTitle">
-
+            <div id="p1Namebtm">Player1</div>
+            <div id="p2Namebtm">Player2</div>
+            <div id="p3Namebtm">Player3</div>
+            <div id="p4Namebtm">Player4</div>
         </div>
         <div class="scoreboard">
             <div class="eachround">
-                
+
             </div>
         </div>
     </footer>
