@@ -21,11 +21,36 @@ main{
     flex-direction: column;
     width: 100%;
 }
-
+.logo{
+    margin-left: auto;
+    margin-right: auto;
+    display: flex;
+    align-items:center;
+    gap: 1rem;
+}
+.logo img{
+    height: 3rem;
+}
+.logo p{
+    color: var(--mandarin);
+    font-size: 1.8rem;
+    font-family: 'Indie Flower', cursive;
+    font-weight: bolder;
+}
 .players{
     border: solid var(--flame) 10px;
     border-radius: 20px;
     background-color:var(--mandarin);
+    height: 13rem;
+    width: 42%;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+}
+.winners{
+    border: solid var(--flame) 10px;
+    border-radius: 20px;
+    background-color:var(--light-blue);
     height: 13rem;
     width: 42%;
     text-align: center;
@@ -51,10 +76,11 @@ main{
     border-radius: 8px;
     background-color: var(--light-blue);
     border: solid 3px var(--dark-blue);
+    color: var(--flame);
 }
 
 .sect2-1{
-    margin-top: 1rem;
+    margin-top: 0.5rem;
     display: flex;
     justify-content: center;
     gap: 1.2rem;
@@ -74,25 +100,60 @@ main{
     gap: 1rem;
 }
 .name{
-    margin-top: 1rem;
     font-size: 1.5rem;
-    font-style: italic;
     font-weight: bold;
+    font-family: 'Viga', sans-serif;
 }
 .score{
     margin-top: 2.5rem;
     font-size: 4rem;;
     font-weight: bolder;
 }
+
 .scoreboardTitle{
     display: flex;
     flex-direction: row;
-    justify-content: space-evenly;
+    justify-content: space-around;
 }
+
+.eachRound{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+}
+
 footer{
     background-color: var(--light-blue);
     width:84%;
     margin-left: 8%;
     margin-top: 1.5rem;
     border-radius: 10px;
+    border: solid 3px var(--flame);
+    border-radius: 10px;
+}
+
+.playerNameRow{
+    margin-top: 1rem;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    gap: 0.5rem;
+}
+
+.editButton{
+    max-height: 1rem;
+}
+
+.Namebtm{
+    background-color: var(--mandarin);
+    padding: 0.5rem;
+    border-radius: 10px;
+    align-content: center;
+    font-family: 'Viga', sans-serif;
+}
+.scorebox{
+    width: 3.5rem;
+    color: var(--darker-blue);
+    text-align: right;
+    margin-right: 3rem;
 }
