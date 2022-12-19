@@ -16,9 +16,9 @@ const editP1Name = document.getElementById("editP1Name");
 const editP2Name = document.getElementById("editP2Name");
 const editP3Name = document.getElementById("editP3Name");
 const editP4Name = document.getElementById("editP4Name");
-var p4Name = "Player1"
-var p4Name = "Player2"
-var p4Name = "Player3"
+var p1Name = "Player1"
+var p2Name = "Player2"
+var p3Name = "Player3"
 var p4Name = "Player4"
 const submit = document.getElementById("submit");
 const undo = document.getElementById("undo");
@@ -38,24 +38,28 @@ const eachRoundContainer = document.getElementById("eachRoundContainer");
 eachRoundContainer.removeChild(eachRoundContainer.firstChild)
 
 editP1Name.addEventListener("click",()=>{
-    p4Name = prompt("Please enter a new Name.")
-    document.getElementById("p1Name").innerHTML = p4Name;
-    document.getElementById("p1Namebtm").innerHTML = p4Name; 
+    p1Name = prompt("Please enter a new Name.")
+    document.getElementById("p1Name").innerHTML = p1Name;
+    document.getElementById("p1Namebtm").innerHTML = p1Name; 
+    p1ScoreInput.placeholder = p1Name;
 });
 editP2Name.addEventListener("click",()=>{
-    p4Name = prompt("Please enter a new Name.")
-    document.getElementById("p2Name").innerHTML = p4Name;
-    document.getElementById("p2Namebtm").innerHTML = p4Name; 
+    p2Name = prompt("Please enter a new Name.")
+    document.getElementById("p2Name").innerHTML = p2Name;
+    document.getElementById("p2Namebtm").innerHTML = p2Name; 
+    p2ScoreInput.placeholder = p2Name;
 });
 editP3Name.addEventListener("click",()=>{
-    p4Name = prompt("Please enter a new Name.")
-    document.getElementById("p3Name").innerHTML = p4Name;
-    document.getElementById("p3Namebtm").innerHTML = p4Name; 
+    p3Name = prompt("Please enter a new Name.")
+    document.getElementById("p3Name").innerHTML = p3Name;
+    document.getElementById("p3Namebtm").innerHTML = p3Name; 
+    p3ScoreInput.placeholder = p3Name;
 });
 editP4Name.addEventListener("click",()=>{
     p4Name = prompt("Please enter a new Name.")
     document.getElementById("p4Name").innerHTML = p4Name;
     document.getElementById("p4Namebtm").innerHTML = p4Name; 
+    p4ScoreInput.placeholder = p4Name;
 });
 
 submit.addEventListener("click", roundFinish);

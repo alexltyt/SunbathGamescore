@@ -38,7 +38,7 @@ main{
     font-weight: bolder;
 }
 .players{
-    border: solid var(--flame) 10px;
+    border:ridge var(--flame) 5px;
     border-radius: 20px;
     background-color:var(--mandarin);
     height: 13rem;
@@ -46,16 +46,26 @@ main{
     text-align: center;
     display: flex;
     flex-direction: column;
+    background-image: linear-gradient(to right, var(--light-blue),
+    var(--darker-blue));
+    -webkit-background-clip: text ;
+    -webkit-text-fill-color: transparent;
+    transition: 0.4s;
+    cursor: pointer;
 }
 .winners{
     border: solid var(--flame) 10px;
     border-radius: 20px;
-    background-color:var(--light-blue);
     height: 13rem;
     width: 42%;
     text-align: center;
     display: flex;
     flex-direction: column;
+    background-image: linear-gradient(to right, var(--light-blue),
+    var(--darker-blue));
+    -webkit-background-clip: text ;
+    -webkit-text-fill-color: transparent;
+    transition: 0.4s;
 }
 .section2{
     margin-left: auto;
@@ -68,6 +78,12 @@ main{
     background-color: var(--light-blue);
     border: solid 3px var(--dark-blue);
     text-align: center;
+    background-image: linear-gradient(to right, var(--light-blue),
+    var(--darker-blue));
+    -webkit-background-clip: text ;
+    -webkit-text-fill-color: transparent;
+    transition: 0.4s;
+    cursor: pointer;
 }
 
 .button{
@@ -76,7 +92,13 @@ main{
     border-radius: 8px;
     background-color: var(--light-blue);
     border: solid 3px var(--dark-blue);
-    color: var(--flame);
+    color: var(--flame); 
+    background-image: linear-gradient(to right, var(--light-blue),
+    var(--darker-blue));
+    -webkit-background-clip: text ;
+    -webkit-text-fill-color: transparent;
+    transition: 0.4s;
+    cursor: pointer;
 }
 
 .sect2-1{
@@ -103,6 +125,7 @@ main{
     font-size: 1.5rem;
     font-weight: bold;
     font-family: 'Viga', sans-serif;
+    color: var(--flame);
 }
 .score{
     margin-top: 2.5rem;
@@ -123,13 +146,13 @@ main{
 }
 
 footer{
-    background-color: var(--light-blue);
     width:84%;
     margin-left: 8%;
     margin-top: 1.5rem;
     border-radius: 10px;
     border: solid 3px var(--flame);
     border-radius: 10px;
+    color: var(--flame);
 }
 
 .playerNameRow{
@@ -145,7 +168,6 @@ footer{
 }
 
 .Namebtm{
-    background-color: var(--mandarin);
     padding: 0.5rem;
     border-radius: 10px;
     align-content: center;
@@ -153,7 +175,7 @@ footer{
 }
 .scorebox{
     width: 3.5rem;
-    color: var(--darker-blue);
+    color: var(--flame);
     text-align: right;
     margin-right: 3rem;
 }
