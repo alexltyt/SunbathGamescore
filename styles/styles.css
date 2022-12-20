@@ -184,9 +184,9 @@ footer{
 .material-symbols-outlined{
     color: var(--flame);
 }
-#hint{
+#hint, #hint_input{
     text-align: center;
-    font-size: 0.5rem;
+    font-size: 1rem;
     max-height: 0.5rem;
 }
 
@@ -240,4 +240,7 @@ h1:active{
     transform: scale(0.5);
     opacity: 50%;
     box-shadow: 12px 8px 8px var(--mandarin); 
+  }
+html, body {
+      overscroll-behavior-y: contain;
   }

@@ -26,6 +26,8 @@ var p4Name = "Player4"
 const submit = document.getElementById("submit");
 const undo = document.getElementById("undo");
 const clear = document.getElementById("clear");
+const hint_input = document.getElementById("hint_input");
+hint_input.style.display = "none";
 
 var p1Score = 0;
 var p2Score = 0;
@@ -56,6 +58,7 @@ player1box.addEventListener("click",()=>{
     resetTimer.style.display = 'none';
     hint.style.display = "none";
     timer.style.display = 'flex';
+    hint_input.style.display = "grid";
 })
 player2box.addEventListener("click",()=>{
     document.querySelector('#inputSection').style.display = 'flex';
@@ -74,6 +77,7 @@ player2box.addEventListener("click",()=>{
     resetTimer.style.display = 'none';
     hint.style.display = "none";
     timer.style.display = 'flex';
+    hint_input.style.display = "grid";
 })
 player3box.addEventListener("click",()=>{
     document.querySelector('#inputSection').style.display = 'flex';
@@ -92,6 +96,7 @@ player3box.addEventListener("click",()=>{
     resetTimer.style.display = 'none';
     hint.style.display = "none";
     timer.style.display = 'flex';
+    hint_input.style.display = "grid";
 })
 player4box.addEventListener("click",()=>{
     document.querySelector('#inputSection').style.display = 'flex';
@@ -110,6 +115,7 @@ player4box.addEventListener("click",()=>{
     resetTimer.style.display = 'none';
     hint.style.display = "none";
     timer.style.display = 'flex';
+    hint_input.style.display = "grid";
 })
 
 
@@ -269,6 +275,7 @@ timer.addEventListener("click",()=>{
     hint.style.display = "grid";
     document.querySelector('#inputSection').style.display = 'none';
     timer.style.display = 'none';
+    hint_input.style.display = "none";
     timeSecond = 61;
 })
 
