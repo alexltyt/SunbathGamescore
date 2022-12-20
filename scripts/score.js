@@ -255,48 +255,6 @@ function scoreboardDisplay(){
     eachRoundContainer.appendChild(eachRound);
 }
 
-// function winningEffect(){
-//     if (p1ScoreInput.value == "0"){
-//         player1box.classList.replace("players","winners")
-//         if (player2box.classList.contains("winners")){
-//             player2box.classList.replace("winners","players");
-//         }else if(player3box.classList.contains("winners")){
-//             player3box.classList.replace("winners","players");
-//         }else if (player4box.classList.contains("winners")){
-//             player4box.classList.replace("winners","players");
-//         };
-//     };
-//     if (p2ScoreInput.value == "0"){
-//         player2box.classList.replace("players","winners")
-//         if (player1box.classList.contains("winners")){
-//             player1box.classList.replace("winners","players");
-//         }else if(player3box.classList.contains("winners")){
-//             player3box.classList.replace("winners","players");
-//         }else if (player4box.classList.contains("winners")){
-//             player4box.classList.replace("winners","players");
-//         };
-//     };
-//     if (p3ScoreInput.value == "0"){
-//         player3box.classList.replace("players","winners")
-//         if (player1box.classList.contains("winners")){
-//             player1box.classList.replace("winners","players");
-//         }else if(player2box.classList.contains("winners")){
-//             player2box.classList.replace("winners","players");
-//         }else if (player4box.classList.contains("winners")){
-//             player4box.classList.replace("winners","players");
-//         };
-//     };
-//     if (p4ScoreInput.value == "0"){
-//         player4box.classList.replace("players","winners")
-//         if (player1box.classList.contains("winners")){
-//             player1box.classList.replace("winners","players");
-//         }else if(player2box.classList.contains("winners")){
-//             player2box.classList.replace("winners","players");
-//         }else if (player3box.classList.contains("winners")){
-//             player3box.classList.replace("winners","players");
-//         };
-//     };
-// }
 
 window.onbeforeunload = function (e) {
     return "";
