@@ -231,7 +231,6 @@ section {
     max-height: 11rem;
   }
   h1 {
-    font-family: "Montserrat";
     font-size: 90px;
     border: var(--mandarin) ridge 3px;
     border-radius: 10px;

@@ -267,6 +267,7 @@ resetTimer.addEventListener("click",()=>{
 timer.addEventListener("click",()=>{
     resetTimer.style.display = 'flex';
     hint.style.display = "grid";
+    document.querySelector('#inputSection').style.display = 'none';
     timer.style.display = 'none';
     timeSecond = 61;
 })
