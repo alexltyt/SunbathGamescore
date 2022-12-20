@@ -59,6 +59,7 @@ player1box.addEventListener("click",()=>{
     hint.style.display = "none";
     timer.style.display = 'flex';
     hint_input.style.display = "grid";
+    
 })
 player2box.addEventListener("click",()=>{
     document.querySelector('#inputSection').style.display = 'flex';
@@ -299,4 +300,18 @@ function displayTime(second) {
 
 function endCount() {
   timeH.innerHTML = "Time out";
+}
+//suppress "pull to refresh" in iOS
+$(window).on('touchstart', function (e) {
+    startY = e.originalEvent.changedTouches[0].pageY;
+});
+
+if(useEventListener) {
+    window.addEventListener("touchmove", function(e){
+        var currentY = e.changedTouches[0].pageY;
+         if ($(window).scrollTop() <= 0 && startY <= currentY) {
+             e.preventDefault();
+             return false;
+         }
+    },{passive:false});
 }
