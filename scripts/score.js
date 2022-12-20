@@ -2,10 +2,12 @@ const p1ScoreDisplay = document.getElementById("p1Score");
 const p2ScoreDisplay = document.getElementById("p2Score");
 const p3ScoreDisplay = document.getElementById("p3Score");
 const p4ScoreDisplay = document.getElementById("p4Score");
+
 const p1ScoreInput = document.getElementById("p1ScoreInput");
 const p2ScoreInput = document.getElementById("p2ScoreInput");
 const p3ScoreInput = document.getElementById("p3ScoreInput");
 const p4ScoreInput = document.getElementById("p4ScoreInput");
+const inputSection = document.getElementById("inputSection");
 
 const player1box = document.getElementById("player1Box");
 const player2box = document.getElementById("player2Box");
@@ -20,9 +22,11 @@ var p1Name = "Player1"
 var p2Name = "Player2"
 var p3Name = "Player3"
 var p4Name = "Player4"
+
 const submit = document.getElementById("submit");
 const undo = document.getElementById("undo");
 const clear = document.getElementById("clear");
+
 var p1Score = 0;
 var p2Score = 0;
 var p3Score = 0;
@@ -33,6 +37,74 @@ var p3Total = 0;
 var p4Total = 0;
 var scoreList = [];
 var scoreListRecord = [];
+
+document.querySelector('#inputSection').style.display = 'none';
+player1box.addEventListener("click",()=>{
+    document.querySelector('#inputSection').style.display = 'flex';
+    player1box.classList.replace("players","winners")
+    if (player2box.classList.contains("winners")){
+        player2box.classList.replace("winners","players");
+    }else if(player3box.classList.contains("winners")){
+        player3box.classList.replace("winners","players");
+    }else if (player4box.classList.contains("winners")){
+        player4box.classList.replace("winners","players");
+    };
+    p1ScoreInput.value = "0";
+    p2ScoreInput.value = p2ScoreInput.defaultValue;
+    p3ScoreInput.value = p3ScoreInput.defaultValue;
+    p4ScoreInput.value = p4ScoreInput.defaultValue;
+    resetTimer.style.display = 'none';
+})
+player2box.addEventListener("click",()=>{
+    document.querySelector('#inputSection').style.display = 'flex';
+    player2box.classList.replace("players","winners")
+    if (player1box.classList.contains("winners")){
+        player1box.classList.replace("winners","players");
+    }else if(player3box.classList.contains("winners")){
+        player3box.classList.replace("winners","players");
+    }else if (player4box.classList.contains("winners")){
+        player4box.classList.replace("winners","players");
+    };
+    p2ScoreInput.value = "0";
+    p1ScoreInput.value = p2ScoreInput.defaultValue;
+    p3ScoreInput.value = p3ScoreInput.defaultValue;
+    p4ScoreInput.value = p4ScoreInput.defaultValue;
+    resetTimer.style.display = 'none';
+})
+player3box.addEventListener("click",()=>{
+    document.querySelector('#inputSection').style.display = 'flex';
+    player3box.classList.replace("players","winners")
+    if (player1box.classList.contains("winners")){
+        player1box.classList.replace("winners","players");
+    }else if(player2box.classList.contains("winners")){
+        player2box.classList.replace("winners","players");
+    }else if (player4box.classList.contains("winners")){
+        player4box.classList.replace("winners","players");
+    };
+    p3ScoreInput.value = "0";
+    p1ScoreInput.value = p2ScoreInput.defaultValue;
+    p2ScoreInput.value = p3ScoreInput.defaultValue;
+    p4ScoreInput.value = p4ScoreInput.defaultValue;
+    resetTimer.style.display = 'none';
+})
+player4box.addEventListener("click",()=>{
+    document.querySelector('#inputSection').style.display = 'flex';
+    player4box.classList.replace("players","winners")
+    if (player1box.classList.contains("winners")){
+        player1box.classList.replace("winners","players");
+    }else if(player2box.classList.contains("winners")){
+        player2box.classList.replace("winners","players");
+    }else if (player3box.classList.contains("winners")){
+        player3box.classList.replace("winners","players");
+    };
+    p4ScoreInput.value = "0";
+    p1ScoreInput.value = p2ScoreInput.defaultValue;
+    p2ScoreInput.value = p3ScoreInput.defaultValue;
+    p3ScoreInput.value = p4ScoreInput.defaultValue;
+    resetTimer.style.display = 'none';
+})
+
+
 
 const eachRoundContainer = document.getElementById("eachRoundContainer");
 eachRoundContainer.removeChild(eachRoundContainer.firstChild)
@@ -124,12 +196,13 @@ function roundFinish(){
             parseInt(p3ScoreInput.value),
             parseInt(p4ScoreInput.value)]);
         calTotal();  
-        winningEffect();  
+        // winningEffect();  
         p1ScoreInput.value = "";
         p2ScoreInput.value = "";
         p3ScoreInput.value = "";
         p4ScoreInput.value = "";
         scoreboardDisplay();
+        document.querySelector('#inputSection').style.display = 'none';
     }else {
         alert("Wrong Input, please enter 0-13 for each player.")
     };
@@ -186,49 +259,46 @@ function scoreboardDisplay(){
     eachRoundContainer.appendChild(eachRound);
 }
 
-function winningEffect(){
-    if (p1ScoreInput.value == "0"){
-        player1box.classList.replace("players","winners")
-        if (player2box.classList.contains("winners")){
-            player2box.classList.replace("winners","players");
-        }else if(player3box.classList.contains("winners")){
-            player3box.classList.replace("winners","players");
-        }else if (player4box.classList.contains("winners")){
-            player4box.classList.replace("winners","players");
-        };
-    };
-    if (p2ScoreInput.value == "0"){
-        player2box.classList.replace("players","winners")
-        if (player1box.classList.contains("winners")){
-            player1box.classList.replace("winners","players");
-        }else if(player3box.classList.contains("winners")){
-            player3box.classList.replace("winners","players");
-        }else if (player4box.classList.contains("winners")){
-            player4box.classList.replace("winners","players");
-        };
-    };
-    if (p3ScoreInput.value == "0"){
-        player3box.classList.replace("players","winners")
-        if (player1box.classList.contains("winners")){
-            player1box.classList.replace("winners","players");
-        }else if(player2box.classList.contains("winners")){
-            player2box.classList.replace("winners","players");
-        }else if (player4box.classList.contains("winners")){
-            player4box.classList.replace("winners","players");
-        };
-    };
-    if (p4ScoreInput.value == "0"){
-        player4box.classList.replace("players","winners")
-        if (player1box.classList.contains("winners")){
-            player1box.classList.replace("winners","players");
-        }else if(player2box.classList.contains("winners")){
-            player2box.classList.replace("winners","players");
-        }else if (player3box.classList.contains("winners")){
-            player3box.classList.replace("winners","players");
-        };
-    };
-}
 
 window.onbeforeunload = function (e) {
     return "";
 };
+
+//Timer//
+let timeSecond = 61;
+const timeH = document.querySelector("h1");
+const resetTimer = document.getElementById("resetTimer");
+const timer = document.getElementById("timer");
+displayTime(timeSecond);
+
+
+resetTimer.style.display = 'none';
+resetTimer.addEventListener("click",()=>{
+    timeSecond = 61;
+});
+timer.addEventListener("click",()=>{
+    resetTimer.style.display = 'flex';
+    timeSecond = 61;
+})
+
+const countDown = setInterval(() => {
+  timeSecond--;
+  displayTime(timeSecond);
+  if (timeSecond == 0 || timeSecond < 1) {
+    endCount();
+    // clearInterval(countDown);
+    timeSecond = 61;
+  }
+}, 1000);
+
+function displayTime(second) {
+  const min = Math.floor(second / 60);
+  const sec = Math.floor(second % 60);
+  timeH.innerHTML = `
+  ${min < 10 ? "0" : ""}${min}:${sec < 10 ? "0" : ""}${sec}
+  `;
+}
+
+function endCount() {
+  timeH.innerHTML = "Time out";
+}
