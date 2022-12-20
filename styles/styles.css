@@ -118,7 +118,7 @@ main, header{
 .section1,.section3{
     display: flex;
     flex-direction: row;
-    margin:1rem 2rem 1rem 2rem;
+    margin:1rem 2rem 0rem 2rem;
     justify-content: center;
     vertical-align: middle;
     gap: 1rem;
@@ -183,20 +183,62 @@ footer{
 }
 .material-symbols-outlined{
     color: var(--flame);
+}
+#hint{
     text-align: center;
+    font-size: 0.5rem;
+    max-height: 0.5rem;
 }
 
-.timer{
+.sect2-0{
+    margin-top: 1.5rem;
+}
+.start-icon{
+    width: fit-content;
+    margin-left: auto;
+    margin-right: auto;
+    border: var(--mandarin) ridge 3px;
+    border-radius: 10px;
+    padding-left: 1.5rem;
+    padding-right: 1.5rem;
+}
+.start-icon:active{
+    transform: scale(0.5);
+    opacity: 50%;
+    box-shadow: 12px 8px 8px var(--mandarin); 
+}
+.sect2-0 p{
+    display: inline;
+    vertical-align: middle;
+}
+#timer-icon{
+    font-size: 2.5rem;
     text-align: center;
+}
+#start-text{
+    font-size: 2.5rem;
+    font-family:fantasy;
 }
 /* ========================================= */
 section {
     width: 100%;
     display: flex;
+    flex-direction: column;
     align-items: center;
     justify-content: center;
+    margin-top: 0%;
+    margin-bottom: 0%;
+    max-height: 11rem;
   }
   h1 {
     font-family: "Montserrat";
     font-size: 90px;
+    border: var(--mandarin) ridge 3px;
+    border-radius: 10px;
+    padding: 2rem;
+  }
+h1:active{
+    transform: scale(0.5);
+    opacity: 50%;
+    box-shadow: 12px 8px 8px var(--mandarin); 
   }

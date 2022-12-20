@@ -54,6 +54,8 @@ player1box.addEventListener("click",()=>{
     p3ScoreInput.value = p3ScoreInput.defaultValue;
     p4ScoreInput.value = p4ScoreInput.defaultValue;
     resetTimer.style.display = 'none';
+    hint.style.display = "none";
+    timer.style.display = 'flex';
 })
 player2box.addEventListener("click",()=>{
     document.querySelector('#inputSection').style.display = 'flex';
@@ -70,6 +72,8 @@ player2box.addEventListener("click",()=>{
     p3ScoreInput.value = p3ScoreInput.defaultValue;
     p4ScoreInput.value = p4ScoreInput.defaultValue;
     resetTimer.style.display = 'none';
+    hint.style.display = "none";
+    timer.style.display = 'flex';
 })
 player3box.addEventListener("click",()=>{
     document.querySelector('#inputSection').style.display = 'flex';
@@ -86,6 +90,8 @@ player3box.addEventListener("click",()=>{
     p2ScoreInput.value = p3ScoreInput.defaultValue;
     p4ScoreInput.value = p4ScoreInput.defaultValue;
     resetTimer.style.display = 'none';
+    hint.style.display = "none";
+    timer.style.display = 'flex';
 })
 player4box.addEventListener("click",()=>{
     document.querySelector('#inputSection').style.display = 'flex';
@@ -102,6 +108,8 @@ player4box.addEventListener("click",()=>{
     p2ScoreInput.value = p3ScoreInput.defaultValue;
     p3ScoreInput.value = p4ScoreInput.defaultValue;
     resetTimer.style.display = 'none';
+    hint.style.display = "none";
+    timer.style.display = 'flex';
 })
 
 
@@ -157,28 +165,6 @@ clear.addEventListener("click", ()=>{
     }
 });
 
-// function doubleOrTriple(){
-//     if (parseInt(p1ScoreInput.value) >=10 && parseInt(p1ScoreInput.value) <=12){
-//         p1ScoreInput.value *= 2;
-//     }else if(parseInt(p1ScoreInput.value)==13){
-//         p1ScoreInput.value *= 3;
-//     }
-//     if (parseInt(p2ScoreInput.value) >=10 && parseInt(p2ScoreInput.value) <=12){
-//         p2ScoreInput.value *= 2;
-//     }else if(parseInt(p2ScoreInput.value)==13){
-//         p2ScoreInput.value *= 3;
-//     }
-//     if (parseInt(p3ScoreInput.value) >=10 && parseInt(p3ScoreInput.value) <=12){
-//         p3ScoreInput.value *= 2;
-//     }else if(parseInt(p3ScoreInput.value)==13){
-//         p3ScoreInput.value *= 3;
-//     }
-//     if (parseInt(p4ScoreInput.value) >=10 && parseInt(p4ScoreInput.value) <=12){
-//         p4ScoreInput.value *= 2;
-//     }else if(parseInt(p4ScoreInput.value)==13){
-//         p4ScoreInput.value *= 3;
-//     }
-// }
 
 function roundFinish(){
     // if (parseInt(p1ScoreInput.value) >=0 && parseInt(p1ScoreInput.value) <=13 &&
@@ -269,6 +255,8 @@ let timeSecond = 61;
 const timeH = document.querySelector("h1");
 const resetTimer = document.getElementById("resetTimer");
 const timer = document.getElementById("timer");
+const hint = document.getElementById("hint");
+hint.style.display = "none";
 displayTime(timeSecond);
 
 
@@ -278,6 +266,8 @@ resetTimer.addEventListener("click",()=>{
 });
 timer.addEventListener("click",()=>{
     resetTimer.style.display = 'flex';
+    hint.style.display = "grid";
+    timer.style.display = 'none';
     timeSecond = 61;
 })
 
@@ -286,7 +276,7 @@ const countDown = setInterval(() => {
   displayTime(timeSecond);
   if (timeSecond == 0 || timeSecond < 1) {
     endCount();
-    // clearInterval(countDown);
+    //clearInterval(countDown);
     timeSecond = 61;
   }
 }, 1000);
