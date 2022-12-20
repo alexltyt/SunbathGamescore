@@ -13,9 +13,9 @@
 
 body{
     background-color: var(--darker-blue);
-    color: var(--darker-blue);
+    color: var(--flame);
 }
-main{
+main, header{
     display: flex;
     flex-direction: column;
     width: 100%;
@@ -181,4 +181,22 @@ footer{
     text-align: right;
     margin-right: 3rem;
 }
+.material-symbols-outlined{
+    color: var(--flame);
+    text-align: center;
+}
+
+.timer{
+    text-align: center;
+}
 /* ========================================= */
+section {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  h1 {
+    font-family: "Montserrat";
+    font-size: 90px;
+  }
