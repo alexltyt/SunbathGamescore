@@ -26,6 +26,8 @@ var p4Name = "Player4"
 const submit = document.getElementById("submit");
 const undo = document.getElementById("undo");
 const clear = document.getElementById("clear");
+const hint_input = document.getElementById("hint_input");
+
 
 var p1Score = 0;
 var p2Score = 0;
@@ -54,6 +56,8 @@ player1box.addEventListener("click",()=>{
     p3ScoreInput.value = p3ScoreInput.defaultValue;
     p4ScoreInput.value = p4ScoreInput.defaultValue;
     resetTimer.style.display = 'none';
+    hint_input.style.display = "grid";
+
 })
 player2box.addEventListener("click",()=>{
     document.querySelector('#inputSection').style.display = 'flex';
@@ -70,6 +74,8 @@ player2box.addEventListener("click",()=>{
     p3ScoreInput.value = p3ScoreInput.defaultValue;
     p4ScoreInput.value = p4ScoreInput.defaultValue;
     resetTimer.style.display = 'none';
+    hint_input.style.display = "grid";
+
 })
 player3box.addEventListener("click",()=>{
     document.querySelector('#inputSection').style.display = 'flex';
@@ -86,6 +92,8 @@ player3box.addEventListener("click",()=>{
     p2ScoreInput.value = p3ScoreInput.defaultValue;
     p4ScoreInput.value = p4ScoreInput.defaultValue;
     resetTimer.style.display = 'none';
+    hint_input.style.display = "grid";
+
 })
 player4box.addEventListener("click",()=>{
     document.querySelector('#inputSection').style.display = 'flex';
@@ -102,6 +110,8 @@ player4box.addEventListener("click",()=>{
     p2ScoreInput.value = p3ScoreInput.defaultValue;
     p3ScoreInput.value = p4ScoreInput.defaultValue;
     resetTimer.style.display = 'none';
+    hint_input.style.display = "grid";
+
 })
 
 
@@ -203,6 +213,7 @@ function roundFinish(){
         p4ScoreInput.value = "";
         scoreboardDisplay();
         document.querySelector('#inputSection').style.display = 'none';
+        hint_input.style.display = "none";
     }else {
         alert("Wrong Input, please enter 0-13 for each player.")
     };
