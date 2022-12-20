@@ -331,27 +331,31 @@ window.addEventListener('load', function() {
 
         if (maybePreventPullToRefresh) {
             maybePreventPullToRefresh = false ;
-            //if (touchYDelta > 0) {
+            if (touchYDelta > 0) {
                 e.preventDefault() ;
-                //document.getElementById('txtLog').textContent = "TouchY: " + touchYDelta;
-                // console.log("pull-to-refresh event detected") ;
+                document.getElementById('txtLog').textContent = "TouchY: " + touchYDelta;
+                console.log("pull-to-refresh event detected") ;
                 return ;
-            //}
+            }
         }
 
-        // if (preventScrollCheckbox.checked) {
-        //     e.preventDefault() ;
-        //     return ;
-        // }
+        if (preventScrollCheckbox.checked) {
+            e.preventDefault() ;
+            return ;
+        }
 
-        // if (preventOverscrollGlowCheckbox.checked) {
-        //     if (window.pageYOffset == 0 && touchYDelta > 0) {
-        //         e.preventDefault() ;
-        //         return ;
-        //     }
-        // }
+        if (preventOverscrollGlowCheckbox.checked) {
+            if (window.pageYOffset == 0 && touchYDelta > 0) {
+                e.preventDefault() ;
+                return ;
+            }
+        }
     };
 
     document.addEventListener('touchstart', touchstartHandler, false) ;
     document.addEventListener('touchmove', touchmoveHandler, false) ;
 }) ;
+// prevent pinch-zoom for iOS Safari 9~12
+if (window.GestureEvent && !('touchAction' in document.body.style)) {
+    document.body.addEventListener('gesturestart', (e)=>{e.preventDefault()}, {passive: false, capture:true});
+  }
