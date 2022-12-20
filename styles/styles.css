@@ -16,7 +16,6 @@ body{
     color: var(--darker-blue);
 }
 main{
-    /* border: red solid 1px; */
     display: flex;
     flex-direction: column;
     width: 100%;
@@ -46,8 +45,8 @@ main{
     text-align: center;
     display: flex;
     flex-direction: column;
-    background-image: linear-gradient(to right, var(--light-blue),
-    var(--darker-blue));
+    background-image: linear-gradient(to right, var(--flame),
+    rgb(212, 137, 137));
     -webkit-background-clip: text ;
     -webkit-text-fill-color: transparent;
     transition: 0.4s;
@@ -99,8 +98,11 @@ main{
     -webkit-text-fill-color: transparent;
     transition: 0.4s;
     cursor: pointer;
+    
 }
-
+.section2{
+    width: 100%;
+}
 .sect2-1{
     margin-top: 0.5rem;
     display: flex;
