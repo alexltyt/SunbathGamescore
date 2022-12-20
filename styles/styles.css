@@ -244,7 +244,3 @@ h1:active{
 html, body {
       overscroll-behavior-y: contain;
   }
-html {
-    overflow: hidden;
-    touch-action: pan-x pan-y;
-}
