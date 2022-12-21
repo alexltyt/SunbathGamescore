@@ -4,17 +4,15 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Rummikub score</title>
+    <title>Big2 Calculator</title>
     <link rel="stylesheet" href="../styles/styles.css?rnd=132">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@48,400,0,0" />
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Indie+Flower&family=Rubik+Spray+Paint&family=Viga&display=swap" rel="stylesheet"> 
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
-
-</head>    
+    <link href="https://fonts.googleapis.com/css2?family=Indie+Flower&family=Rubik+Spray+Paint&family=Viga&display=swap" rel="stylesheet">    
+</head>
 <body>
-    <header>
+    <main>
         <div id="mySidenav" class="sidenav">
             <a href="../index.html" id="home">Home</a>
             <a href="rummikub.html" id="rummikub">Rummikub Aid</a>
@@ -22,46 +20,30 @@
             <a href="#" id="contact">Contact</a>
         </div>
         <div class="logo">
-            <img src="../img/rummikub_logo.png" alt="logo" title="logo">
-            <p>Rummikub score </p>
+            <img src="../img/cards.png" alt="logo" title="logo">
+            <p>Big2 Calculator</p>
         </div>
-    </header>
-    <main>
         <div class="section1">
             <div class="players player1" id="player1Box">
-                    <div class="playerNameRow">
-                        <div class="name" id="p1Name">Player1</div>
-                        <span class="material-symbols-outlined editButton" id="editP1Name">
-                            edit_square
-                        </span>
-                    </div>
-                    <div class="score" id="p1Score">0</div>
+                <div class="playerNameRow">
+                    <div class="name" id="p1Name">Player1</div>
+                    <span class="material-symbols-outlined editButton" id="editP1Name">
+                        edit_square
+                    </span>
                 </div>
-                <div class="players player2" id="player2Box">
-                    <div class="playerNameRow">
-                        <div class="name" id="p2Name">Player2</div>
-                        <span class="material-symbols-outlined editButton" id="editP2Name">
-                            edit_square
-                        </span>
-                    </div>
+                <div class="score" id="p1Score">0</div>
+            </div>
+            <div class="players player2" id="player2Box">
+                <div class="playerNameRow">
+                    <div class="name" id="p2Name">Player2</div>
+                    <span class="material-symbols-outlined editButton" id="editP2Name">
+                        edit_square
+                    </span>
+                </div>
                 <div class="score" id="p2Score">0</div>
             </div>
         </div>
         <div class="section2">
-            <p id="hint">[Tap when your turn is done]</p>
-            <div class="timer">
-                <section class="timer-section">
-                    <div id="resetTimer">
-                      <h1>00:00</h1>
-                    </div>
-                  </section>
-            </div>
-            <div class="sect2-0" id="timer">
-                <div class="start-icon">
-                    <p class="material-symbols-outlined" id="timer-icon">schedule</p>
-                    <p id="start-text">START</p>
-                </div>
-            </div>
             <p id="hint_input">[input your score here]</p>
             <div class="sect2-1" id="inputSection">
                 <input type="tel" placeholder="Player 1" inputmode="decimal" class="numInput" id="p1ScoreInput"/>
@@ -106,6 +88,6 @@
         <div class="eachRoundContainer" id="eachRoundContainer">
         </div>
     </footer>
-    <script src="../scripts/rummikub.js"></script>
+    <script src="../scripts/score.js"></script>
 </body>
 </html>
