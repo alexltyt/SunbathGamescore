@@ -15,15 +15,17 @@ body{
     color: var(--flame);
 }
 .title{
-    font-size: 2rem;
+    font-size: 3rem;
     font-family: 'Black Ops One', cursive;
     text-align: center;
+    margin:8% 0 8% 0;
 }
 .home-icon a{
+    text-decoration: none;
     display: flex;
     flex-direction: column;
     text-align: center;
-    width: 30%;
+    width: 15rem;
     margin-left: auto;
     margin-right: auto;
     color: var(--flame);
@@ -32,7 +34,9 @@ body{
     height: 3rem;
     font-size: 2rem;
     margin-bottom: 3rem;
+    padding: 1rem;
     font-family: 'Black Ops One', cursive;
+    vertical-align: middle;
 }
 
 .home-icon a:active{
@@ -51,27 +55,38 @@ header{
     display: flex;
     flex-direction: row;
 }
-main{
-    display: flex;
-    flex-direction: column;
-    width: 100%;
+
+/* Menu Icon effect*/
+.menuIcon div{
+    width: 35px;
+    height: 4px;
+    background-color: var(--flame);
+    margin: 6px 0;
+}
+
+.menuIcon{
+    margin-top: 2%;
+    margin-right: 0%;
 }
 .logo{
-    margin-left: auto;
-    margin-right: auto;
+    margin: 3% auto 1% auto;
     display: flex;
     align-items:center;
     gap: 1rem;
 }
 .logo img{
-    height: 3rem;
+    height: 2.2rem;
 }
 .logo p{
     color: var(--mandarin);
     font-size: 1.8rem;
     font-family: 'Black Ops One', cursive;
 }
-
+main{
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+}
 .players{
     border:ridge var(--flame) 5px;
     border-radius: 20px;
@@ -222,11 +237,6 @@ footer{
 .material-symbols-outlined{
     color: var(--flame);
 }
-#hint, #hint_input{
-    text-align: center;
-    font-size: 1rem;
-    max-height: 0.5rem;
-}
 
 .sect2-0{
     margin-top: 1.5rem;
@@ -264,15 +274,22 @@ section {
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    margin-top: 0%;
+    margin-top: 1rem;
     margin-bottom: 0%;
-    max-height: 11rem;
+    max-height: 10rem;
   }
+#hint, #hint_input{
+    text-align: center;
+    font-size: 0.7rem;
+    max-height: 0.5rem;
+    margin-top: 1rem;
+}
+
   h1 {
     font-size: 90px;
     border: var(--mandarin) ridge 3px;
     border-radius: 10px;
-    padding: 2rem;
+    padding: 1rem;
   }
 h1:active{
     transform: scale(0.5);
@@ -332,11 +349,4 @@ html, body {
   @media screen and (max-height: 450px) {
     .sidenav {padding-top: 15px;}
     .sidenav a {font-size: 18px;}
-  }
-  /* Menu Icon effect*/
-  .menuIcon div{
-    width: 35px;
-    height: 5px;
-    background-color: var(--flame);
-    margin: 6px 0;
   }
