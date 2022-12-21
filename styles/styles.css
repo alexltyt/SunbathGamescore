@@ -7,15 +7,49 @@
     --flame: #DF622Cff;
 }
 
-*{
-    font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
-}
 
 body{
     background-color: var(--darker-blue);
     color: var(--flame);
 }
-main, header{
+.title{
+    font-size: 2rem;
+    font-family: 'Black Ops One', cursive;
+    text-align: center;
+}
+.home-icon a{
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    width: 30%;
+    margin-left: auto;
+    margin-right: auto;
+    color: var(--flame);
+    border: var(--mandarin) ridge 3px;
+    border-radius: 10px;
+    height: 3rem;
+    font-size: 2rem;
+    margin-bottom: 3rem;
+    font-family: 'Black Ops One', cursive;
+}
+
+.home-icon a:active{
+    transform: scale(0.8);
+    opacity: 80%;
+    box-shadow: 12px 8px 8px var(--mandarin); 
+}
+.home-icon a:hover{
+    background-color: var(--flame);
+    color: var(--darker-blue);
+    opacity: 80%;
+    box-shadow: 6px 4px 2px var(--mandarin) ; 
+}
+
+header{
+    display: flex;
+    flex-direction: row;
+}
+main{
     display: flex;
     flex-direction: column;
     width: 100%;
@@ -33,9 +67,9 @@ main, header{
 .logo p{
     color: var(--mandarin);
     font-size: 1.8rem;
-    font-family: 'Indie Flower', cursive;
-    font-weight: bolder;
+    font-family: 'Black Ops One', cursive;
 }
+
 .players{
     border:ridge var(--flame) 5px;
     border-radius: 20px;
@@ -126,13 +160,14 @@ main, header{
 .name{
     font-size: 1.5rem;
     font-weight: bold;
-    font-family: 'Viga', sans-serif;
+    font-family: 'Black Ops One', cursive;
     color: var(--flame);
 }
 .score{
     margin-top: 2.5rem;
     font-size: 4rem;;
     font-weight: bolder;
+    font-family: 'Black Ops One', cursive;
 }
 
 .scoreboardTitle{
@@ -145,6 +180,7 @@ main, header{
     display: flex;
     flex-direction: row;
     justify-content: space-around;
+    font-family: 'Viga', sans-serif;
 }
 
 footer{
@@ -217,7 +253,7 @@ footer{
 }
 #start-text{
     font-size: 2.5rem;
-    font-family: 'Viga', sans-serif;
+    font-family: 'Black Ops One', cursive;
 }
 /* ========================================= */
 section {
@@ -244,40 +280,61 @@ h1:active{
 html, body {
       overscroll-behavior-y: contain;
   }
+/* The side navigation menu */
+.sidenav {
+    height: 100%; /* 100% Full-height */
+    width: 0; /* 0 width - change this with JavaScript */
+    position: fixed; /* Stay in place */
+    z-index: 1; /* Stay on top */
+    top: 0;
+    left: 0;
+    background-color:var(--mandarin);
+    opacity: 70%; /* Black*/
+    overflow-x: hidden; /* Disable horizontal scroll */
+    padding-top: 60px; /* Place content 60px from the top */
+    transition: 0.5s; /* 0.5 second transition effect to slide in the sidenav */
+  }
 
-  #mySidenav a {
-    position: absolute; /* Position them relative to the browser window */
-    left: -10%; /* Position them outside of the screen */
-    transition: 0.3s; /* Add transition on hover */
-    padding: 15px; /* 15px padding */
-    width: 12%; /* Set a specific width */
-    text-decoration: none; /* Remove underline */
-    font-size: 1.2rem; /* Increase font size */
-    color: white; /* White text color */
-    border-radius: 0 5px 5px 0; /* Rounded corners on the top right and bottom right side */
+  /* The navigation menu */
+  .sidenav a {
+    padding: 8px 8px 8px 32px;
+    text-decoration: none;
+    font-size: 25px;
+    color: var(--darker-blue);
+    display: block;
+    transition: 0.3s;
+    font-family: 'Black Ops One', cursive;
   }
   
-  #mySidenav a:hover {
-    left: 0; /* On mouse-over, make the elements appear as they should */
+  /* When you mouse over the navigation links, change their color */
+  .sidenav a:hover {
+    color: #f1f1f1;
   }
   
-  /* The about link: 20px from the top with a green background */
-  #home {
-    top: 20px;
-    background-color: #04AA6D;
+  /* Position and style the close button (top right corner) */
+  .sidenav .closebtn {
+    position: absolute;
+    top: 0;
+    right: 25px;
+    font-size: 36px;
+    margin-left: 50px;
   }
   
-  #rummikub {
-    top: 80px;
-    background-color: #2196F3; /* Blue */
+  /* Style page content - use this if you want to push the page content to the right when you open the side navigation */
+  #main {
+    transition: margin-left .5s;
+    padding: 20px;
   }
   
-  #big2 {
-    top: 140px;
-    background-color: #f44336; /* Red */
+  /* On smaller screens, where height is less than 450px, change the style of the sidenav (less padding and a smaller font size) */
+  @media screen and (max-height: 450px) {
+    .sidenav {padding-top: 15px;}
+    .sidenav a {font-size: 18px;}
   }
-  
-  #contact {
-    top: 200px;
-    background-color: #555 /* Light Black */
+  /* Menu Icon effect*/
+  .menuIcon div{
+    width: 35px;
+    height: 5px;
+    background-color: var(--flame);
+    margin: 6px 0;
   }
