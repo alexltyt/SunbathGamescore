@@ -7,7 +7,9 @@
     --flame: #DF622Cff;
 }
 
-
+*{
+    font-family: 'Black Ops One', cursive;
+}
 body{
     background-color: var(--darker-blue);
     color: var(--flame);
