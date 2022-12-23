@@ -18,6 +18,7 @@ const editP1Name = document.getElementById("editP1Name");
 const editP2Name = document.getElementById("editP2Name");
 const editP3Name = document.getElementById("editP3Name");
 const editP4Name = document.getElementById("editP4Name");
+const main = document.getElementById("main");
 var p1Name = "Player1"
 var p2Name = "Player2"
 var p3Name = "Player3"
@@ -39,6 +40,7 @@ var p3Total = 0;
 var p4Total = 0;
 var scoreList = [];
 var scoreListRecord = [];
+
 
 document.querySelector('#inputSection').style.display = 'none';
 player1box.addEventListener("click",()=>{
@@ -258,7 +260,7 @@ window.onbeforeunload = function (e) {
 };
 
 //Timer//
-let timeSecond = 61;
+let timeSecond = 60;
 const timeH = document.querySelector("h1");
 const resetTimer = document.getElementById("resetTimer");
 const timer = document.getElementById("timer");
@@ -270,6 +272,9 @@ displayTime(timeSecond);
 resetTimer.style.display = 'none';
 resetTimer.addEventListener("click",()=>{
     timeSecond = 61;
+    document.body.style.animation = "flash 0.5s linear";
+    setTimeout(function(){document.body.style.animation = '';}, 2000);
+    document.body.style.backgroundColor = "#062D51ff";
 });
 timer.addEventListener("click",()=>{
     resetTimer.style.display = 'flex';
@@ -277,18 +282,37 @@ timer.addEventListener("click",()=>{
     document.querySelector('#inputSection').style.display = 'none';
     timer.style.display = 'none';
     hint_input.style.display = "none";
-    timeSecond = 61;
+    timeSecond = 60;
 })
 
 const countDown = setInterval(() => {
   timeSecond--;
   displayTime(timeSecond);
+  if (timeSecond<11){
+    document.body.style.animation = 'party 1s linear infinite';
+  }  
   if (timeSecond == 0 || timeSecond < 1) {
     endCount();
-    //clearInterval(countDown);
-    timeSecond = 61;
+    // clearInterval(countDown);
+    // timeSecond = 61;
+    document.body.style.animation = "";
+    document.body.style.backgroundColor = "rgb(225, 251, 254)";
   }
 }, 1000);
+
+function timerFunction(){
+    timeSecond--;
+    displayTime(timeSecond);
+    if (timeSecond<11){
+      document.body.style.animation = 'party 1s linear infinite';
+    }  
+    if (timeSecond == 0 || timeSecond < 1) {
+      endCount();
+      clearInterval(countDown);
+      timeSecond = 61;
+      document.body.style.animation = "";
+    }
+  }
 
 function displayTime(second) {
   const min = Math.floor(second / 60);

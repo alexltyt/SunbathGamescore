@@ -5,6 +5,7 @@
     --darker-blue: #062D51ff;
     --mandarin: #F07C41ff;
     --flame: #DF622Cff;
+    --white: rgb(225, 251, 254);
 }
 
 *{
@@ -135,6 +136,11 @@ main{
     transition: 0.4s;
     cursor: pointer;
 }
+.numInput:focus{
+    font-size: x-large;
+    -webkit-text-fill-color:var(--flame);
+    place-content:unset;
+}
 
 .button{
     width: 15%;
@@ -250,11 +256,31 @@ footer{
     padding-left: 1.5rem;
     padding-right: 1.5rem;
 }
+/*Timer clicked effect*/
 .start-icon:active{
     transform: scale(0.5);
     opacity: 50%;
     box-shadow: 12px 8px 8px var(--mandarin); 
 }
+/*Timer clicked effect*/
+/* .timer-section:after {
+    content: "";
+    background: var(--mandarin);
+    display: block;
+    position: absolute;
+    padding-top: 300%;
+    padding-left: 350%;
+    margin-left: -20px;
+    margin-top: -120%;
+    opacity: 0;
+    transition: all 3s
+  }
+  .timer-section:active:after {
+    padding: 0;
+    margin: 0;
+    opacity: 1;
+    transition: 0s
+  } */
 .sect2-0 p{
     display: inline;
     vertical-align: middle;
@@ -285,16 +311,47 @@ section {
     margin-top: 1rem;
 }
 
-  h1 {
+h1 {
     font-size: 90px;
     border: var(--mandarin) ridge 3px;
     border-radius: 10px;
     padding: 1rem;
+    cursor: pointer;
+    /* -webkit-transition-duration: 0.4s;
+    transition-duration: 0.4s;
+    text-decoration: none;
+    overflow: hidden; */
   }
-h1:active{
-    transform: scale(0.5);
-    opacity: 50%;
-    box-shadow: 12px 8px 8px var(--mandarin); 
+
+@keyframes flash{
+    0% {background-color: var(--flame);}
+    50% {background-color: white;}
+}
+@keyframes party{
+    0% {background-color: var(--mandarin);}
+    10% {background-color: var(--mandarin);}
+    20% {background-color: var(--mandarin);}
+    30% {background-color: white;}
+    40% {background-color: white;}
+    50% {background-color:white;} 
+}
+h1:after{
+    /* background-color: var(--flame);
+    transition-duration: 1s;
+    transition-property: all; */
+    animation-name: pageFlash;
+    animation-iteration-count: 3;
+    animation-duration: 2s;
+    /* transform: scale(0.5);
+    opacity: 0;
+    transition: all 2s;
+    box-shadow: 12px 8px 8px var(--mandarin);  */
+  }
+h1:active:after{
+    /* transform: scale(0.5);
+    opacity: 1;
+    transition: 0s;
+    box-shadow: 12px 8px 8px var(--mandarin);  */
   }
 html, body {
       overscroll-behavior-y: contain;
