@@ -171,6 +171,7 @@ main{
     display: flex;
     justify-content: center;
     gap: 2rem;
+    height: 1.5rem;
 }
 .section1,.section3{
     display: flex;
@@ -209,13 +210,18 @@ main{
 footer{
     width:84%;
     margin-left: 8%;
-    margin-top: 1.5rem;
     border-radius: 10px;
     border: solid 3px var(--flame);
     border-radius: 10px;
     color: var(--flame);
 }
-
+#restoredata{
+    color: var(--flame);
+    text-align: center;
+    margin-top: 1rem;
+    font-size: 1.5rem;
+    font-weight: bolder;
+}
 .playerNameRow{
     margin-top: 1rem;
     display: flex;
@@ -397,11 +403,11 @@ html, body {
   }
   
   /* Style page content - use this if you want to push the page content to the right when you open the side navigation */
-  #main {
+  /* #main {
     transition: margin-left .5s;
     padding: 20px;
   }
-  
+   */
   /* On smaller screens, where height is less than 450px, change the style of the sidenav (less padding and a smaller font size) */
   @media screen and (max-height: 450px) {
     .sidenav {padding-top: 15px;}

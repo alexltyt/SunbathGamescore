@@ -29,6 +29,7 @@ const undo = document.getElementById("undo");
 const clear = document.getElementById("clear");
 const hint_input = document.getElementById("hint_input");
 hint_input.style.display = "none";
+const restoredata = document.getElementById("restoredata");
 
 var p1Score = 0;
 var p2Score = 0;
@@ -41,6 +42,28 @@ var p4Total = 0;
 var scoreList = [];
 var scoreListRecord = [];
 
+restoredata.addEventListener("click",()=>{
+    let text = "Are you sure to restore data?";
+    if (confirm(text) == true) {
+        p1Score = localStorage.p1Score;
+        p2Score = localStorage.p2Score;
+        p3Score = localStorage.p3Score;
+        p4Score = localStorage.p4Score;
+        p1Name = localStorage.p1Name;
+        p2Name = localStorage.p2Name;
+        p3Name = localStorage.p3Name;
+        p4Name = localStorage.p4Name;
+        showScore()
+        document.getElementById("p1Name").innerHTML = p1Name;
+        document.getElementById("p1Namebtm").innerHTML = p1Name;
+        document.getElementById("p2Name").innerHTML = p2Name;
+        document.getElementById("p2Namebtm").innerHTML = p2Name;
+        document.getElementById("p3Name").innerHTML = p3Name;
+        document.getElementById("p3Namebtm").innerHTML = p3Name;
+        document.getElementById("p4Name").innerHTML = p4Name;
+        document.getElementById("p4Namebtm").innerHTML = p4Name;
+    }
+})
 
 document.querySelector('#inputSection').style.display = 'none';
 player1box.addEventListener("click",()=>{
@@ -131,24 +154,28 @@ editP1Name.addEventListener("click",()=>{
     document.getElementById("p1Name").innerHTML = p1Name;
     document.getElementById("p1Namebtm").innerHTML = p1Name; 
     p1ScoreInput.placeholder = p1Name;
+    localStorage.p1Name = p1Name;
 });
 editP2Name.addEventListener("click",()=>{
     p2Name = prompt("Please enter a new Name.")
     document.getElementById("p2Name").innerHTML = p2Name;
     document.getElementById("p2Namebtm").innerHTML = p2Name; 
     p2ScoreInput.placeholder = p2Name;
+    localStorage.p2Name = p2Name;
 });
 editP3Name.addEventListener("click",()=>{
     p3Name = prompt("Please enter a new Name.")
     document.getElementById("p3Name").innerHTML = p3Name;
     document.getElementById("p3Namebtm").innerHTML = p3Name; 
     p3ScoreInput.placeholder = p3Name;
+    localStorage.p3Name = p3Name;
 });
 editP4Name.addEventListener("click",()=>{
     p4Name = prompt("Please enter a new Name.")
     document.getElementById("p4Name").innerHTML = p4Name;
     document.getElementById("p4Namebtm").innerHTML = p4Name; 
     p4ScoreInput.placeholder = p4Name;
+    localStorage.p4Name = p4Name;
 });
 
 submit.addEventListener("click", roundFinish);
@@ -171,36 +198,31 @@ clear.addEventListener("click", ()=>{
         p4Total = 0;
         calTotal();
         eachRoundContainer.innerHTML = "";
+        localStorage.clear();
     }
 });
 
-
 function roundFinish(){
-    // if (parseInt(p1ScoreInput.value) >=0 && parseInt(p1ScoreInput.value) <=13 &&
-    // parseInt(p2ScoreInput.value) >=0 && parseInt(p2ScoreInput.value) <=13 &&
-    // parseInt(p3ScoreInput.value) >=0 && parseInt(p3ScoreInput.value) <=13 &&
-    // parseInt(p4ScoreInput.value) >=0 && parseInt(p4ScoreInput.value) <=13){
-        scoreList = [];
-        // doubleOrTriple();
-        scoreList.push(parseInt(p1ScoreInput.value),
-                        parseInt(p2ScoreInput.value),
-                        parseInt(p3ScoreInput.value),
-                        parseInt(p4ScoreInput.value));
-        scoreListRecord.push([parseInt(p1ScoreInput.value),
-            parseInt(p2ScoreInput.value),
-            parseInt(p3ScoreInput.value),
-            parseInt(p4ScoreInput.value)]);
-        calTotal();  
-        // winningEffect();  
-        p1ScoreInput.value = "";
-        p2ScoreInput.value = "";
-        p3ScoreInput.value = "";
-        p4ScoreInput.value = "";
-        scoreboardDisplay();
-        document.querySelector('#inputSection').style.display = 'none';
-    // }else {
-    //     alert("Wrong Input, please enter 0-13 for each player.")
-    // };
+    scoreList = [];
+    scoreList.push(parseInt(p1ScoreInput.value),
+                    parseInt(p2ScoreInput.value),
+                    parseInt(p3ScoreInput.value),
+                    parseInt(p4ScoreInput.value));
+    scoreListRecord.push([parseInt(p1ScoreInput.value),
+        parseInt(p2ScoreInput.value),
+        parseInt(p3ScoreInput.value),
+        parseInt(p4ScoreInput.value)]);
+    calTotal();  
+    p1ScoreInput.value = "";
+    p2ScoreInput.value = "";
+    p3ScoreInput.value = "";
+    p4ScoreInput.value = "";
+    scoreboardDisplay();
+    document.querySelector('#inputSection').style.display = 'none';
+    localStorage.p1Score = p1Score;
+    localStorage.p2Score = p2Score;
+    localStorage.p3Score = p3Score;
+    localStorage.p4Score = p4Score;
 }
 
 function calTotal(){
@@ -215,17 +237,17 @@ function calTotal(){
         p3Total += scoreListRecord[i][2];
         p4Total += scoreListRecord[i][3];
     }
-    p1Score = (p1Total - p2Total) + (p1Total-p3Total) + (p1Total-p4Total);
-    p2Score = (p2Total - p1Total) + (p2Total-p3Total) + (p2Total-p4Total);
-    p3Score = (p3Total - p1Total) + (p3Total-p2Total) + (p3Total-p4Total);
-    p4Score = (p4Total - p1Total) + (p4Total-p2Total) + (p4Total-p3Total);
+    p1Score = 0-((p1Total - p2Total) + (p1Total-p3Total) + (p1Total-p4Total));
+    p2Score = 0-((p2Total - p1Total) + (p2Total-p3Total) + (p2Total-p4Total));
+    p3Score = 0-((p3Total - p1Total) + (p3Total-p2Total) + (p3Total-p4Total));
+    p4Score = 0-((p4Total - p1Total) + (p4Total-p2Total) + (p4Total-p3Total));
     showScore();
 }
 function showScore(){
-    p1ScoreDisplay.innerHTML = 0-p1Score;
-    p2ScoreDisplay.innerHTML = 0-p2Score;
-    p3ScoreDisplay.innerHTML = 0-p3Score;
-    p4ScoreDisplay.innerHTML = 0-p4Score;
+    p1ScoreDisplay.innerHTML = p1Score;
+    p2ScoreDisplay.innerHTML = p2Score;
+    p3ScoreDisplay.innerHTML = p3Score;
+    p4ScoreDisplay.innerHTML = p4Score;
 }
 
 function scoreboardDisplay(){
@@ -282,37 +304,51 @@ timer.addEventListener("click",()=>{
     document.querySelector('#inputSection').style.display = 'none';
     timer.style.display = 'none';
     hint_input.style.display = "none";
-    timeSecond = 60;
+    // timeSecond = 60;
+    const countDown = setInterval(() => {
+        timeSecond--;
+        displayTime(timeSecond);
+        if (timeSecond<11){
+          document.body.style.animation = 'party 1s linear infinite';
+        }  
+        if (timeSecond == 0 || timeSecond < 1) {
+          endCount();
+          // clearInterval(countDown);
+          // timeSecond = 61;
+          document.body.style.animation = "";
+          document.body.style.backgroundColor = "rgb(225, 251, 254)";
+        }
+      }, 1000);
 })
 
-const countDown = setInterval(() => {
-  timeSecond--;
-  displayTime(timeSecond);
-  if (timeSecond<11){
-    document.body.style.animation = 'party 1s linear infinite';
-  }  
-  if (timeSecond == 0 || timeSecond < 1) {
-    endCount();
-    // clearInterval(countDown);
-    // timeSecond = 61;
-    document.body.style.animation = "";
-    document.body.style.backgroundColor = "rgb(225, 251, 254)";
-  }
-}, 1000);
+// const countDown = setInterval(() => {
+//   timeSecond--;
+//   displayTime(timeSecond);
+//   if (timeSecond<11){
+//     document.body.style.animation = 'party 1s linear infinite';
+//   }  
+//   if (timeSecond == 0 || timeSecond < 1) {
+//     endCount();
+//     // clearInterval(countDown);
+//     // timeSecond = 61;
+//     document.body.style.animation = "";
+//     document.body.style.backgroundColor = "rgb(225, 251, 254)";
+//   }
+// }, 1000);
 
-function timerFunction(){
-    timeSecond--;
-    displayTime(timeSecond);
-    if (timeSecond<11){
-      document.body.style.animation = 'party 1s linear infinite';
-    }  
-    if (timeSecond == 0 || timeSecond < 1) {
-      endCount();
-      clearInterval(countDown);
-      timeSecond = 61;
-      document.body.style.animation = "";
-    }
-  }
+// function timerFunction(){
+//     timeSecond--;
+//     displayTime(timeSecond);
+//     if (timeSecond<11){
+//       document.body.style.animation = 'party 1s linear infinite';
+//     }  
+//     if (timeSecond == 0 || timeSecond < 1) {
+//       endCount();
+//       clearInterval(countDown);
+//       timeSecond = 61;
+//       document.body.style.animation = "";
+//     }
+//   }
 
 function displayTime(second) {
   const min = Math.floor(second / 60);
