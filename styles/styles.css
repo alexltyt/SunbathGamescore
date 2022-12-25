@@ -300,12 +300,13 @@ section {
 }
 
 h1 {
-    font-size: 4rem;
+    font-size: 3.8rem;
     border: var(--mandarin) ridge 3px;
     border-radius: 10px;
     padding: 1rem;
     cursor: pointer;
     text-align: center;
+    max-height: 4rem;
     /* -webkit-transition-duration: 0.4s;
     transition-duration: 0.4s;
     text-decoration: none;
