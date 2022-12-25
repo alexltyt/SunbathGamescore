@@ -268,25 +268,7 @@ footer{
     opacity: 50%;
     box-shadow: 12px 8px 8px var(--mandarin); 
 }
-/*Timer clicked effect*/
-/* .timer-section:after {
-    content: "";
-    background: var(--mandarin);
-    display: block;
-    position: absolute;
-    padding-top: 300%;
-    padding-left: 350%;
-    margin-left: -20px;
-    margin-top: -120%;
-    opacity: 0;
-    transition: all 3s
-  }
-  .timer-section:active:after {
-    padding: 0;
-    margin: 0;
-    opacity: 1;
-    transition: 0s
-  } */
+
 .sect2-0 p{
     display: inline;
     vertical-align: middle;
@@ -318,7 +300,7 @@ section {
 }
 
 h1 {
-    font-size: 90px;
+    font-size: 4rem;
     border: var(--mandarin) ridge 3px;
     border-radius: 10px;
     padding: 1rem;
@@ -343,23 +325,13 @@ h1 {
     50% {background-color:white;} 
 }
 h1:after{
-    /* background-color: var(--flame);
-    transition-duration: 1s;
-    transition-property: all; */
+
     animation-name: pageFlash;
     animation-iteration-count: 3;
     animation-duration: 2s;
-    /* transform: scale(0.5);
-    opacity: 0;
-    transition: all 2s;
-    box-shadow: 12px 8px 8px var(--mandarin);  */
+
   }
-h1:active:after{
-    /* transform: scale(0.5);
-    opacity: 1;
-    transition: 0s;
-    box-shadow: 12px 8px 8px var(--mandarin);  */
-  }
+
 html, body {
       overscroll-behavior-y: contain;
   }
