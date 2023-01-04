@@ -50,7 +50,7 @@ const dp1Score = document.getElementById("dp1Score");
 const dp2Score = document.getElementById("dp2Score");
 const dp3Score = document.getElementById("dp3Score");
 const dp4Score = document.getElementById("dp4Score");
-
+let pauseCheck = false;
 
 dialogSection.style.display = "none";
 let input = "";
@@ -182,29 +182,34 @@ undo.addEventListener("click", ()=>{
 
 function roundFinish(){
     let confirmText = "Start next round?"
-    if (confirm(confirmText)==true){
-        scoreList = [];
-        scoreList.push(parseInt(dp1Score.innerHTML),
-                       parseInt(dp2Score.innerHTML),
-                       parseInt(dp3Score.innerHTML),
-                       parseInt(dp4Score.innerHTML));
-        scoreListRecord.push([parseInt(dp1Score.innerHTML),
-                              parseInt(dp2Score.innerHTML),
-                              parseInt(dp3Score.innerHTML),
-                              parseInt(dp4Score.innerHTML)]);
-        calTotal();  
-        dp1Score.innerHTML = "";
-        dp2Score.innerHTML = "";
-        dp3Score.innerHTML = "";
-        dp4Score.innerHTML = "";
-        scoreboardDisplay();
-        dialogSection.style.display = 'none';
-        localStorage.p1Score = p1Score;
-        localStorage.p2Score = p2Score;
-        localStorage.p3Score = p3Score;
-        localStorage.p4Score = p4Score;
-        localStorage.scoreListRecord = JSON.stringify(scoreListRecord);
-        winner = "";
+    if(dp1Score.innerHTML != ""&&dp2Score.innerHTML != ""&&dp3Score.innerHTML != ""&&dp4Score.innerHTML != ""){
+        if (confirm(confirmText)==true){
+            scoreList = [];
+            scoreList.push(parseInt(dp1Score.innerHTML),
+                           parseInt(dp2Score.innerHTML),
+                           parseInt(dp3Score.innerHTML),
+                           parseInt(dp4Score.innerHTML));
+            scoreListRecord.push([parseInt(dp1Score.innerHTML),
+                                  parseInt(dp2Score.innerHTML),
+                                  parseInt(dp3Score.innerHTML),
+                                  parseInt(dp4Score.innerHTML)]);
+            calTotal();  
+            dp1Score.innerHTML = "";
+            dp2Score.innerHTML = "";
+            dp3Score.innerHTML = "";
+            dp4Score.innerHTML = "";
+            scoreboardDisplay();
+            dialogSection.style.display = 'none';
+            localStorage.p1Score = p1Score;
+            localStorage.p2Score = p2Score;
+            localStorage.p3Score = p3Score;
+            localStorage.p4Score = p4Score;
+            localStorage.scoreListRecord = JSON.stringify(scoreListRecord);
+            winner = "";
+            timer.style.display = "grid";
+        }
+    }else{
+        alert("Please enter score of all players.");
     }
 
 }
@@ -322,12 +327,13 @@ window.onbeforeunload = function (e) {
 let timeSecond = 60;
 const timeH = document.querySelector("h1");
 const resetTimer = document.getElementById("resetTimer");
+const timerSection = document.querySelector(".timer-section");
 const timer = document.getElementById("timer");
 const hint = document.getElementById("hint");
 hint.style.display = "none";
 displayTime(timeSecond);
 
-resetTimer.style.display = 'none';
+timerSection.style.display = 'none';
 resetTimer.addEventListener("click",()=>{
     if (timeSecond==0){
         timeSecond = 61;
@@ -364,9 +370,12 @@ timer.addEventListener("click",()=>{
     document.body.style.animation = "flash 0.5s linear";
     setTimeout(function(){document.body.style.animation = '';}, 2000);
     document.body.style.backgroundColor = "#062D51ff";
-    delay(1000).then(()=> {resetTimer.style.display = 'flex';
+    delay(1000).then(()=> {timerSection.style.display = 'flex';
     hint.style.display = "grid";
     timer.style.display = 'none';
+    // if(dialogSection.style.display == "grid"){
+    //     dialogSection.style.display = "none";
+    // };
 })
    
 
@@ -397,9 +406,8 @@ const countDown = setInterval(() => {
                     player4box.classList.replace("winners","players");
                 };
                 dp1Score.innerHTML = "0";
-                resetTimer.style.display = 'none';
+                timerSection.style.display = 'none';
                 hint.style.display = "none";
-                timer.style.display = 'flex';
                 clearInterval(countDown);
                 document.body.style.animation = "";
                 dialogSection.style.display = "grid";
@@ -420,9 +428,8 @@ const countDown = setInterval(() => {
                     player4box.classList.replace("winners","players");
                 };
                 dp2Score.innerHTML=0;
-                resetTimer.style.display = 'none';
+                timerSection.style.display = 'none';
                 hint.style.display = "none";
-                timer.style.display = 'flex';
                 clearInterval(countDown);
                 document.body.style.animation = "";
                 dialogSection.style.display = "grid";
@@ -442,9 +449,8 @@ const countDown = setInterval(() => {
                     player4box.classList.replace("winners","players");
                 };
                 dp3Score.innerHTML = "0";
-                resetTimer.style.display = 'none';
+                timerSection.style.display = 'none';
                 hint.style.display = "none";
-                timer.style.display = 'flex';
                 clearInterval(countDown);
                 document.body.style.animation = "";
                 dialogSection.style.display = "grid";
@@ -464,9 +470,8 @@ const countDown = setInterval(() => {
                     player3box.classList.replace("winners","players");
                 };
                 dp4Score.innerHTML = "0";
-                resetTimer.style.display = 'none';
+                timerSection.style.display = 'none';
                 hint.style.display = "none";
-                timer.style.display = 'flex';
                 document.body.style.animation = "";
                 dialogSection.style.display = "grid";
                 clearInterval(countDown);
@@ -492,11 +497,14 @@ const countDown = setInterval(() => {
             document.getElementById("p4Name").innerHTML = "Player4";
             document.getElementById("p4Namebtm").innerHTML = "Player4"; 
             clearInterval(countDown);
-            resetTimer.style.display = 'none';
+            timerSection.style.display = 'none';
             hint.style.display = "none";
             timer.style.display = 'flex';
         }
     });
+    document.querySelector(".pauseTimer").addEventListener("click",()=>{
+        alert("Timer has Paused. Press confirm to resume.")
+    })
 })
 
 function displayTime(second) {
