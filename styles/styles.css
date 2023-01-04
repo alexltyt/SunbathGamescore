@@ -403,8 +403,9 @@ html, body {
     .sidenav a {font-size: 18px;}
 }
 .dialog-section{
-    margin-left: 3rem;
-    margin-right: 3rem;
+    margin-left: auto;
+    margin-right: auto;
+    width: 90%;
 }
 .pNameSection{
     display: grid;
@@ -424,7 +425,7 @@ html, body {
 .dialog-pName{
     border-radius: 8px;
     padding: 0.5rem;
-    font-size: 1.5rem;
+    font-size:0.5rem;
     cursor: pointer;
     border: solid var(--flame) 1px;
 }
@@ -440,7 +441,7 @@ html, body {
     display: grid;
     grid-template-columns: repeat(4, 1fr);
     grid-template-rows: repeat(4,1fr);
-    grid-gap: 1rem;
+    grid-gap: 0.5rem;
 }
 
 .keys .key{
