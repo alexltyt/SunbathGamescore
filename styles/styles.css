@@ -93,7 +93,7 @@ main{
     border:ridge var(--flame) 5px;
     border-radius: 20px;
     background-color:var(--mandarin);
-    height: 13rem;
+    height: 12rem;
     width: 42%;
     text-align: center;
     display: flex;
@@ -105,16 +105,19 @@ main{
     transition: 0.4s;
     cursor: pointer;
 }
+.crown{
+    font-size: 2.5rem;
+}
 .winners{
     border: solid var(--flame) 10px;
     border-radius: 20px;
-    height: 13rem;
+    height: 12rem;
     width: 42%;
     text-align: center;
     display: flex;
     flex-direction: column;
     background-image: linear-gradient(to right, var(--light-blue),
-    var(--darker-blue));
+    var(--dark-blue));
     -webkit-background-clip: text ;
     -webkit-text-fill-color: transparent;
     transition: 0.4s;
@@ -184,14 +187,14 @@ main{
     gap: 1rem;
 }
 .name{
-    font-size: 1.5rem;
+    font-size: 1.3rem;
     font-weight: bold;
     font-family: 'Black Ops One', cursive;
     color: var(--flame);
 }
 .score{
-    margin-top: 2.5rem;
-    font-size: 3.5rem;;
+    margin-top: 3rem;
+    font-size: 2.5rem;;
     font-weight: bolder;
     font-family: 'Black Ops One', cursive;
 }
@@ -206,7 +209,6 @@ main{
     font-family: 'Black Ops One', cursive;
     display: grid;
     grid-template-columns: repeat(4,1fr);
-    text-align: center;
 }
 
 
@@ -247,7 +249,6 @@ footer{
     width: 3.5rem;
     color: var(--flame);
     text-align: right;
-    margin-right: 3rem;
 }
 .material-symbols-outlined{
     color: var(--flame);
@@ -277,7 +278,7 @@ footer{
 }
 .pauseTimer{
     font-size: 2rem;
-    border: var(--flame) solid 1px;
+    border: var(--flame) solid 6px;
     border-radius:50%;
     height: 2rem;
     width: 2rem;
@@ -436,6 +437,12 @@ html, body {
     justify-content: center;
     font-size: 1.5rem;
 }
+@keyframes mymove {
+    0%{font-size: 100px;opacity: 10%;}
+  }
+@keyframes mymoveBig {
+    0%{font-size: 120rem;}
+  }
 .keys{
     margin-top: 1rem;
     display: grid;
@@ -455,6 +462,18 @@ html, body {
     color: var(--darker-blue);
     cursor: pointer;
 }
+.operator{
+    font-size: 1.5rem;
+    font-weight: bolder;
+}
+.confirm{
+    background-color: var(--flame);
+    color: var(--darker-blue);
+}
+.smile img{
+    width: 1.5rem;
+}
+
 .nextGame{
     text-align: center;
     margin-top: 1rem;

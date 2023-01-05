@@ -50,10 +50,21 @@ const dp1Score = document.getElementById("dp1Score");
 const dp2Score = document.getElementById("dp2Score");
 const dp3Score = document.getElementById("dp3Score");
 const dp4Score = document.getElementById("dp4Score");
-let pauseCheck = false;
-
-dialogSection.style.display = "none";
+const dialogLower = document.querySelector(".dialogLower");
+const p1Crown = document.getElementById("p1Crown");
+const p2Crown = document.getElementById("p2Crown");
+const p3Crown = document.getElementById("p3Crown");
+const p4Crown = document.getElementById("p4Crown");
+let pauseCheck = true;
 let input = "";
+dialogLower.style.display = "none";
+dialogSection.style.display = "none";
+submit.style.display = "none";
+p1Crown.style.display = "none";
+p2Crown.style.display = "none";
+p3Crown.style.display = "none";
+p4Crown.style.display = "none";
+
 for (let player of players){
     player.addEventListener("click",()=>{
         for (let player of players){player.classList.remove("selected");}
@@ -62,6 +73,7 @@ for (let player of players){
             selectedPlayer = player.id;
             input = "";
             output.innerHTML = input;
+            dialogLower.style.display = "grid";
         }
     })
 }
@@ -69,22 +81,37 @@ for (let player of players){
 for (let key of keys){
     const keyValue = key.dataset.key;
     key.addEventListener("click",()=>{
+        dp1Score.style.animation = "";
+        dp2Score.style.animation = "";
+        dp3Score.style.animation = "";
+        dp4Score.style.animation = "";
         if (keyValue == "confirm"){
             input = input.slice(0,-1);
             let result = eval(input);
             switch(selectedPlayer){
                 case'dp1Name':
+                dp1Score.style.animation = "mymove 1s";
                 dp1Score.innerHTML = result;
                 break;            
-                case'dp2Name':dp2Score.innerHTML = result;
+                case'dp2Name':
+                dp2Score.style.animation = "mymove 1s";
+                dp2Score.innerHTML = result;
                 break;            
-                case'dp3Name':dp3Score.innerHTML = result;
+                case'dp3Name':
+                dp3Score.style.animation = "mymove 1s";
+                dp3Score.innerHTML = result;
                 break;            
-                case'dp4Name':dp4Score.innerHTML = result;
+                case'dp4Name':
+                dp4Score.style.animation = "mymove 1s";
+                dp4Score.innerHTML = result;
                 break;            
             }
             input = "";
             output.innerHTML = input;
+            dialogLower.style.display = "none";
+            if (dp1Score != "" && dp2Score !=""&&dp3Score!=""&&dp4Score!=""){
+                submit.style.display = "grid";
+            }
         }
         else if(keyValue=="backspace") {
             input = input.slice(0,-1);
@@ -104,7 +131,7 @@ for (let key of keys){
 function reloadName(){
     for (var i=0;i<players.length;i++){
         console.log(i);
-        players[0].innerHTML = "Alex";
+        players[0].innerHTML = p1Name;
         players[1].innerHTML = p2Name;
         players[2].innerHTML = p3Name;
         players[3].innerHTML = p4Name;
@@ -207,35 +234,13 @@ function roundFinish(){
             localStorage.scoreListRecord = JSON.stringify(scoreListRecord);
             winner = "";
             timer.style.display = "grid";
+            dialogLower.style.display = "none";
         }
     }else{
         alert("Please enter score of all players.");
     }
 
 }
-// function roundFinish(){
-//     scoreList = [];
-//     scoreList.push(parseInt(p1ScoreInput.value),
-//                     parseInt(p2ScoreInput.value),
-//                     parseInt(p3ScoreInput.value),
-//                     parseInt(p4ScoreInput.value));
-//     scoreListRecord.push([parseInt(p1ScoreInput.value),
-//         parseInt(p2ScoreInput.value),
-//         parseInt(p3ScoreInput.value),
-//         parseInt(p4ScoreInput.value)]);
-//     calTotal();  
-//     p1ScoreInput.value = "";
-//     p2ScoreInput.value = "";
-//     p3ScoreInput.value = "";
-//     p4ScoreInput.value = "";
-//     scoreboardDisplay();
-//     document.querySelector('#inputSection').style.display = 'none';
-//     localStorage.p1Score = p1Score;
-//     localStorage.p2Score = p2Score;
-//     localStorage.p3Score = p3Score;
-//     localStorage.p4Score = p4Score;
-//     localStorage.scoreListRecord = JSON.stringify(scoreListRecord);
-// }
 
 function calTotal(){
     p1Total = 0;
@@ -260,6 +265,18 @@ function showScore(){
     p2ScoreDisplay.innerHTML = p2Score;
     p3ScoreDisplay.innerHTML = p3Score;
     p4ScoreDisplay.innerHTML = p4Score;
+    p1ScoreDisplay.style.visibility = "hidden";
+    p2ScoreDisplay.style.visibility = "hidden";
+    p3ScoreDisplay.style.visibility = "hidden";
+    p4ScoreDisplay.style.visibility = "hidden";
+    setTimeout(()=>{p1ScoreDisplay.style.animation = "mymoveBig 1s"},300)
+    setTimeout(()=>{p2ScoreDisplay.style.animation = "mymoveBig 1s"},800)
+    setTimeout(()=>{p3ScoreDisplay.style.animation = "mymoveBig 1s"},1300)
+    setTimeout(()=>{p4ScoreDisplay.style.animation = "mymoveBig 1s"},1800)
+    setTimeout(()=>{p1ScoreDisplay.style.visibility = "visible"},700);
+    setTimeout(()=>{p2ScoreDisplay.style.visibility = "visible"},700);
+    setTimeout(()=>{p3ScoreDisplay.style.visibility = "visible"},700);
+    setTimeout(()=>{p4ScoreDisplay.style.visibility = "visible"},700);
 }
 
 function scoreboardDisplay(){
@@ -365,22 +382,10 @@ resetTimer.addEventListener("click",()=>{
     }
 });
 
-timer.addEventListener("click",()=>{
-    timeSecond = 61;
-    document.body.style.animation = "flash 0.5s linear";
-    setTimeout(function(){document.body.style.animation = '';}, 2000);
-    document.body.style.backgroundColor = "#062D51ff";
-    delay(1000).then(()=> {timerSection.style.display = 'flex';
-    hint.style.display = "grid";
-    timer.style.display = 'none';
-    // if(dialogSection.style.display == "grid"){
-    //     dialogSection.style.display = "none";
-    // };
-})
-   
-
 const countDown = setInterval(() => {
-    timeSecond--;
+    if (pauseCheck === false ) {
+        timeSecond--;
+    }
     displayTime(timeSecond);
     if (timeSecond<11){
         document.body.style.animation = 'party 1s linear infinite';
@@ -391,92 +396,132 @@ const countDown = setInterval(() => {
         document.body.style.animation = "";
         document.body.style.backgroundColor = "rgb(225, 251, 254)";
     }
-    }, 1000);
-    player1box.addEventListener("click",()=>{
-        if(timer.style.display == 'none'){
-            let text = p1Name + ' is the winner?';
-            if (confirm(text) == true) {
-                winner = "dp1Name";
-                player1box.classList.replace("players","winners")
-                if (player2box.classList.contains("winners")){
-                    player2box.classList.replace("winners","players");
-                }else if(player3box.classList.contains("winners")){
-                    player3box.classList.replace("winners","players");
-                }else if (player4box.classList.contains("winners")){
-                    player4box.classList.replace("winners","players");
-                };
-                dp1Score.innerHTML = "0";
-                timerSection.style.display = 'none';
-                hint.style.display = "none";
-                clearInterval(countDown);
-                document.body.style.animation = "";
-                dialogSection.style.display = "grid";
-            }
+}, 1000);
+
+
+player1box.addEventListener("click",()=>{
+    if(timer.style.display == 'none'){
+        let text = p1Name + ' is the winner?';
+        if (confirm(text) == true) {
+            winner = "dp1Name";
+            player1box.classList.replace("players","winners")
+            if (player2box.classList.contains("winners")){
+                player2box.classList.replace("winners","players");
+            }else if(player3box.classList.contains("winners")){
+                player3box.classList.replace("winners","players");
+            }else if (player4box.classList.contains("winners")){
+                player4box.classList.replace("winners","players");
+            };
+            dp1Score.innerHTML = "0";
+            timerSection.style.display = 'none';
+            hint.style.display = "none";
+            document.body.style.animation = "";
+            dialogSection.style.display = "grid";
+            pauseCheck = true;
+            p2Crown.style.display = "none";
+            p3Crown.style.display = "none";
+            p4Crown.style.display = "none";
+            p1Crown.style.display = "grid";
         }
+    }
+});
+
+player2box.addEventListener("click",()=>{
+    if(timer.style.display == 'none'){
+        let text = p2Name + ' is the winner?';
+        if (confirm(text) == true) {
+            winner = "dp2Name";
+            player2box.classList.replace("players","winners")
+            if (player1box.classList.contains("winners")){
+                player1box.classList.replace("winners","players");
+            }else if(player3box.classList.contains("winners")){
+                player3box.classList.replace("winners","players");
+            }else if (player4box.classList.contains("winners")){
+                player4box.classList.replace("winners","players");
+            };
+            dp2Score.innerHTML=0;
+            timerSection.style.display = 'none';
+            hint.style.display = "none";
+            document.body.style.animation = "";
+            dialogSection.style.display = "grid";
+            pauseCheck = true;
+            p1Crown.style.display = "none";
+            p3Crown.style.display = "none";
+            p4Crown.style.display = "none";
+            p2Crown.style.display = "grid";
+        }}
     });
-    player2box.addEventListener("click",()=>{
-        if(timer.style.display == 'none'){
-            let text = p2Name + ' is the winner?';
-            if (confirm(text) == true) {
-                winner = "dp2Name";
-                player2box.classList.replace("players","winners")
-                if (player1box.classList.contains("winners")){
-                    player1box.classList.replace("winners","players");
-                }else if(player3box.classList.contains("winners")){
-                    player3box.classList.replace("winners","players");
-                }else if (player4box.classList.contains("winners")){
-                    player4box.classList.replace("winners","players");
-                };
-                dp2Score.innerHTML=0;
-                timerSection.style.display = 'none';
-                hint.style.display = "none";
-                clearInterval(countDown);
-                document.body.style.animation = "";
-                dialogSection.style.display = "grid";
-            }}
-        });
-    player3box.addEventListener("click",()=>{
-        if(timer.style.display == 'none'){
-            let text = p3Name + ' is the winner?';
-            if (confirm(text) == true) {
-                winner = "dp3Name";
-                player3box.classList.replace("players","winners")
-                if (player1box.classList.contains("winners")){
-                    player1box.classList.replace("winners","players");
-                }else if(player2box.classList.contains("winners")){
-                    player2box.classList.replace("winners","players");
-                }else if (player4box.classList.contains("winners")){
-                    player4box.classList.replace("winners","players");
-                };
-                dp3Score.innerHTML = "0";
-                timerSection.style.display = 'none';
-                hint.style.display = "none";
-                clearInterval(countDown);
-                document.body.style.animation = "";
-                dialogSection.style.display = "grid";
-            }}
-        });
-    player4box.addEventListener("click",()=>{
-        if(timer.style.display == 'none'){
-            let text = p4Name + ' is the winner?';
-            if (confirm(text) == true) {
-                winner = "dp4Name";
-                player4box.classList.replace("players","winners")
-                if (player1box.classList.contains("winners")){
-                    player1box.classList.replace("winners","players");
-                }else if(player2box.classList.contains("winners")){
-                    player2box.classList.replace("winners","players");
-                }else if (player3box.classList.contains("winners")){
-                    player3box.classList.replace("winners","players");
-                };
-                dp4Score.innerHTML = "0";
-                timerSection.style.display = 'none';
-                hint.style.display = "none";
-                document.body.style.animation = "";
-                dialogSection.style.display = "grid";
-                clearInterval(countDown);
-            }}
+player3box.addEventListener("click",()=>{
+    if(timer.style.display == 'none'){
+        let text = p3Name + ' is the winner?';
+        if (confirm(text) == true) {
+            winner = "dp3Name";
+            player3box.classList.replace("players","winners")
+            if (player1box.classList.contains("winners")){
+                player1box.classList.replace("winners","players");
+            }else if(player2box.classList.contains("winners")){
+                player2box.classList.replace("winners","players");
+            }else if (player4box.classList.contains("winners")){
+                player4box.classList.replace("winners","players");
+            };
+            dp3Score.innerHTML = "0";
+            timerSection.style.display = 'none';
+            hint.style.display = "none";
+            document.body.style.animation = "";
+            dialogSection.style.display = "grid";
+            pauseCheck = true;
+            p1Crown.style.display = "none";
+            p2Crown.style.display = "none";
+            p4Crown.style.display = "none";
+            p3Crown.style.display = "grid";
+        }}
     });
+player4box.addEventListener("click",()=>{
+    if(timer.style.display == 'none'){
+        let text = p4Name + ' is the winner?';
+        if (confirm(text) == true) {
+            winner = "dp4Name";
+            player4box.classList.replace("players","winners")
+            if (player1box.classList.contains("winners")){
+                player1box.classList.replace("winners","players");
+            }else if(player2box.classList.contains("winners")){
+                player2box.classList.replace("winners","players");
+            }else if (player3box.classList.contains("winners")){
+                player3box.classList.replace("winners","players");
+            };
+            dp4Score.innerHTML = "0";
+            timerSection.style.display = 'none';
+            hint.style.display = "none";
+            document.body.style.animation = "";
+            dialogSection.style.display = "grid";
+            pauseCheck = true;
+            p1Crown.style.display = "none";
+            p2Crown.style.display = "none";
+            p3Crown.style.display = "none";
+            p4Crown.style.display = "grid";
+        }}
+});
+
+
+
+timer.addEventListener("click",()=>{
+    p1ScoreDisplay.style.animation = "";
+    p2ScoreDisplay.style.animation = "";
+    p3ScoreDisplay.style.animation = "";
+    p4ScoreDisplay.style.animation = "";
+    pauseCheck = false;
+    timeSecond = 61;
+    document.body.style.animation = "flash 0.5s linear";
+    setTimeout(function(){document.body.style.animation = '';}, 2000);
+    document.body.style.backgroundColor = "#062D51ff";
+    delay(1000).then(()=> {timerSection.style.display = 'flex';
+    hint.style.display = "grid";
+    timer.style.display = 'none';
+    // if(dialogSection.style.display == "grid"){
+        //     dialogSection.style.display = "none";
+        // };
+    })
+    
     clear.addEventListener("click", ()=>{
         let text = "Are you sure to start over?";
         if (confirm(text) == true) {
@@ -502,9 +547,19 @@ const countDown = setInterval(() => {
             timer.style.display = 'flex';
         }
     });
-    document.querySelector(".pauseTimer").addEventListener("click",()=>{
-        alert("Timer has Paused. Press confirm to resume.")
-    })
+
+})
+const pauseTimer = document.getElementById("pauseTimer");
+pauseTimer.addEventListener("click",()=>{
+    pauseCheck = !pauseCheck;
+    if (pauseCheck){
+        pauseTimer.style.textAlign = "right";
+        pauseTimer.innerHTML = "▶";
+    }else{
+        pauseTimer.style.textAlign = "center";
+        pauseTimer.innerHTML = "||";
+    }
+    
 })
 
 function displayTime(second) {

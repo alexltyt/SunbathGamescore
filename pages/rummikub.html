@@ -39,13 +39,14 @@
     <main id="main">
         <div class="section1">
             <div class="players player1" id="player1Box">
-                    <div class="playerNameRow">
-                        <div class="name" id="p1Name">Player1</div>
-                        <span class="material-symbols-outlined editButton" id="editP1Name">
-                            edit_square
-                        </span>
-                    </div>
-                    <div class="score" id="p1Score">0</div>
+                <div class="playerNameRow">
+                    <div class="name" id="p1Name">Player1</div>
+                    <span class="material-symbols-outlined editButton" id="editP1Name">
+                        edit_square
+                    </span>
+                </div>
+                <div class="score" id="p1Score">0</div>
+                <div class="crown" id="p1Crown">👑</div>
                 </div>
                 <div class="players player2" id="player2Box">
                     <div class="playerNameRow">
@@ -55,6 +56,7 @@
                         </span>
                     </div>
                 <div class="score" id="p2Score">0</div>
+                <div class="crown" id="p2Crown">👑</div>
             </div>
         </div>
         <div class="section2">
@@ -64,7 +66,7 @@
                     <div id="resetTimer">
                       <h1>00:00</h1>
                     </div>
-                    <div class="pauseTimer">❙❙</div>
+                    <div class="pauseTimer" id="pauseTimer">||</div>
                   </section>
             </div>
             <div class="sect2-0" id="timer">
@@ -97,6 +99,7 @@
                     <span class="roundScore" id="dp4Score"></span>
                 <!-- </div> -->
             </div>
+            <div class="dialogLower">
                 <div class="outputTitle">Score :</div>
                 <div class="output">
                     <span></span>
@@ -141,17 +144,18 @@
                     <div data-key="13"class="key">
                         <span>13</span>
                     </div>
-                    <div data-key="30"class="key" style="font-size: 1.5rem; font-weight:bolder;">
-                        <span>☺</span>
+                    <div data-key="30"class="key smile">
+                        <img src="/img/smile2.png" alt="Smile" title="Smile">
                     </div>
-                    <div data-key="backspace"class="key operator" style="font-size: 1.5rem;font-weight:bolder;">
-                        <span>⬅</span>
+                    <div data-key="backspace"class="key operator">
+                        <span>«</span>
                     </div>
-                    <div data-key="confirm"class="key operator">
-                        <span>Confirm</span>
+                    <div data-key="confirm"class="key operator confirm">
+                        <span>✔</span>
                     </div>
                 </div>    
-                <div class="nextGame" id="submit">Next game</div>            
+            </div>
+            <div class="nextGame" id="submit">Next game</div>  
         </div>
         <div class="section3">
             <div class="players player3" id="player3Box">
@@ -162,6 +166,7 @@
                     </span>
                 </div>
                 <div class="score" id="p3Score">0</div>
+                <div class="crown" id="p3Crown">👑</div>
             </div>
             <div class="players player4" id="player4Box">
                 <div class="playerNameRow">
@@ -171,6 +176,7 @@
                     </span>
                 </div>
                 <div class="score" id="p4Score">0</div>
+                <div class="crown" id="p4Crown">👑</div>
             </div>
         </div>    
         <div class="sect2-2">
@@ -192,6 +198,6 @@
         </div>
     </footer>
     <script src="../scripts/rummikub.js"></script>
-    <script src="../scripts/scoreInput.js"></script>
+    <!-- <script src="../scripts/scoreInput.js"></script> -->
 </body>
 </html>
