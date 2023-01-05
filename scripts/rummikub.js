@@ -269,10 +269,10 @@ function showScore(){
     p2ScoreDisplay.style.visibility = "hidden";
     p3ScoreDisplay.style.visibility = "hidden";
     p4ScoreDisplay.style.visibility = "hidden";
-    setTimeout(()=>{p1ScoreDisplay.style.animation = "mymoveBig 1s"},300)
-    setTimeout(()=>{p2ScoreDisplay.style.animation = "mymoveBig 1s"},800)
-    setTimeout(()=>{p3ScoreDisplay.style.animation = "mymoveBig 1s"},1300)
-    setTimeout(()=>{p4ScoreDisplay.style.animation = "mymoveBig 1s"},1800)
+    setTimeout(()=>{p1ScoreDisplay.style.animation = "mymoveBig 1s"},300);
+    setTimeout(()=>{p2ScoreDisplay.style.animation = "mymoveBig 1s"},600);
+    setTimeout(()=>{p3ScoreDisplay.style.animation = "mymoveBig 1s"},1200);
+    setTimeout(()=>{p4ScoreDisplay.style.animation = "mymoveBig 1s"},1700);
     setTimeout(()=>{p1ScoreDisplay.style.visibility = "visible"},700);
     setTimeout(()=>{p2ScoreDisplay.style.visibility = "visible"},700);
     setTimeout(()=>{p3ScoreDisplay.style.visibility = "visible"},700);
