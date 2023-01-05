@@ -81,11 +81,15 @@ for (let player of players){
 for (let key of keys){
     const keyValue = key.dataset.key;
     key.addEventListener("click",()=>{
+        
         dp1Score.style.animation = "";
         dp2Score.style.animation = "";
         dp3Score.style.animation = "";
         dp4Score.style.animation = "";
         if (keyValue == "confirm"){
+            if(input==""){
+                alert("Please enter the score.");
+            }else{
             input = input.slice(0,-1);
             let result = eval(input);
             switch(selectedPlayer){
@@ -105,11 +109,11 @@ for (let key of keys){
                 dp4Score.style.animation = "mymove 1s";
                 dp4Score.innerHTML = result;
                 break;            
-            }
+            }}
             input = "";
             output.innerHTML = input;
             dialogLower.style.display = "none";
-            if (dp1Score != "" && dp2Score !=""&&dp3Score!=""&&dp4Score!=""){
+            if (dp1Score.innerHTML != "" && dp2Score.innerHTML !=""&&dp3Score.innerHTML!=""&&dp4Score.innerHTML!=""){
                 submit.style.display = "grid";
             }
         }
@@ -130,7 +134,6 @@ for (let key of keys){
 
 function reloadName(){
     for (var i=0;i<players.length;i++){
-        console.log(i);
         players[0].innerHTML = p1Name;
         players[1].innerHTML = p2Name;
         players[2].innerHTML = p3Name;
@@ -167,32 +170,69 @@ const eachRoundContainer = document.getElementById("eachRoundContainer");
 eachRoundContainer.removeChild(eachRoundContainer.firstChild)
 
 editP1Name.addEventListener("click",()=>{
-    p1Name = prompt("Please enter a new Name.")
-    document.getElementById("p1Name").innerHTML = p1Name;
-    document.getElementById("p1Namebtm").innerHTML = p1Name; 
-    localStorage.p1Name = p1Name;
-    reloadName();
+    if (dialogSection.style.display === "none" && timerSection.style.display==="none"){
+        p1Name = prompt("Please enter a new Name.");
+        if (p1Name == null){
+            p1Name = "Player1";
+        }else if (p1Name){
+
+        }else{
+            p1Name = "Player1";
+        }
+        document.getElementById("p1Name").innerHTML = p1Name;
+        document.getElementById("p1Namebtm").innerHTML = p1Name; 
+        localStorage.p1Name = p1Name;
+        reloadName();
+    }
 });
 editP2Name.addEventListener("click",()=>{
-    p2Name = prompt("Please enter a new Name.")
+    if (dialogSection.style.display === "none" && timerSection.style.display==="none"){
+    p2Name = prompt("Please enter a new Name.");
+    if (p2Name == null){
+        p2Name = "Player2";
+    }else if (p2Name){
+
+    }else{
+        p2Name = "Player2";
+    }
     document.getElementById("p2Name").innerHTML = p2Name;
     document.getElementById("p2Namebtm").innerHTML = p2Name; 
     localStorage.p2Name = p2Name;
     reloadName();
+    }
 });
 editP3Name.addEventListener("click",()=>{
-    p3Name = prompt("Please enter a new Name.")
+    if (dialogSection.style.display === "none" && timerSection.style.display==="none"){
+    p3Name = prompt("Please enter a new Name.");
+    if (p3Name == ""){
+        p3Name = "Player3";
+    }else if (p3Name){
+
+    }else{
+        p3Name = "Player3";
+    }
+
     document.getElementById("p3Name").innerHTML = p3Name;
     document.getElementById("p3Namebtm").innerHTML = p3Name; 
     localStorage.p3Name = p3Name;
     reloadName();
+    }
 });
 editP4Name.addEventListener("click",()=>{
-    p4Name = prompt("Please enter a new Name.")
-    document.getElementById("p4Name").innerHTML = p4Name;
-    document.getElementById("p4Namebtm").innerHTML = p4Name; 
-    localStorage.p4Name = p4Name;
-    reloadName();
+    if (dialogSection.style.display === "none" && timerSection.style.display==="none"){
+        p4Name = prompt("Please enter a new Name.");
+        if (p4Name == ""){
+            p4Name = "Player4";
+        }else if (p4Name){
+
+        }else{
+            p4Name = "Player4";
+        }
+        document.getElementById("p4Name").innerHTML = p4Name;
+        document.getElementById("p4Namebtm").innerHTML = p4Name; 
+        localStorage.p4Name = p4Name;
+        reloadName();
+    }
 });
 
 submit.addEventListener("click", roundFinish);
@@ -209,7 +249,7 @@ undo.addEventListener("click", ()=>{
 
 function roundFinish(){
     let confirmText = "Start next round?"
-    if(dp1Score.innerHTML != ""&&dp2Score.innerHTML != ""&&dp3Score.innerHTML != ""&&dp4Score.innerHTML != ""){
+    if(dp1Score.innerHTML != "" && dp2Score.innerHTML != "" && dp3Score.innerHTML != "" && dp4Score.innerHTML != ""){
         if (confirm(confirmText)==true){
             scoreList = [];
             scoreList.push(parseInt(dp1Score.innerHTML),
@@ -248,7 +288,7 @@ function calTotal(){
     p3Total = 0;
     p4Total = 0;
     for (var i = 0; i < scoreListRecord.length ; i++) {
-        console.log(scoreListRecord[i]);
+        // console.log(scoreListRecord[i]);
         p1Total += scoreListRecord[i][0];
         p2Total += scoreListRecord[i][1];
         p3Total += scoreListRecord[i][2];
