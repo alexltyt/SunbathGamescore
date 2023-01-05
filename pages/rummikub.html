@@ -37,6 +37,82 @@
         </div>
     </header>
     <main id="main">
+        <div class="dialog-section">
+            <div class="outputTitle">Selected the player and enter the score :</div>
+            <div class="pNameSection">
+                <!-- <div class="dialog-pName-container"> -->
+                    <div class="dialog-pName" id="dp1Name">Player 1</div>
+                    <div class="dialog-pName" id="dp2Name">Player 2</div>
+                    <div class="dialog-pName" id="dp3Name">Player 3</div>
+                    <div class="dialog-pName" id="dp4Name">Player 4</div>
+                <!-- </div> -->
+                <!-- <div class="dialog-score-container"> -->
+                    <span class="roundScore" id="dp1Score"></span>
+                    <span class="roundScore" id="dp2Score"></span>
+                    <span class="roundScore" id="dp3Score"></span>
+                    <span class="roundScore" id="dp4Score"></span>
+                <!-- </div> -->
+            </div>
+              
+        </div>
+
+        <div class="dialogLower">
+            <div class="outputTitle">Score :</div>
+            <div class="output">
+                <span></span>
+            </div>
+            <div class="keys">
+                <div data-key="1"class="key">
+                    <span>1</span>
+                </div>
+                <div data-key="2"class="key">
+                    <span>2</span>
+                </div>
+                <div data-key="3"class="key">
+                    <span>3</span>
+                </div>
+                <div data-key="4"class="key">
+                    <span>4</span>
+                </div>
+                <div data-key="5"class="key">
+                    <span>5</span>
+                </div>
+                <div data-key="6"class="key">
+                    <span>6</span>
+                </div>
+                <div data-key="7"class="key">
+                    <span>7</span>
+                </div>
+                <div data-key="8"class="key">
+                    <span>8</span>
+                </div>
+                <div data-key="9"class="key">
+                    <span>9</span>
+                </div>
+                <div data-key="10"class="key" id="10">
+                    <span>10</span>
+                </div>
+                <div data-key="11"class="key">
+                    <span>11</span>
+                </div>
+                <div data-key="12"class="key">
+                    <span>12</span>
+                </div>
+                <div data-key="13"class="key">
+                    <span>13</span>
+                </div>
+                <div data-key="30"class="key smile">
+                    <img src="../img/smile2.png" alt="Smile" title="Smile">
+                </div>
+                <div data-key="backspace"class="key operator">
+                    <span>«</span>
+                </div>
+                <div data-key="confirm"class="key operator confirm">
+                    <span>✔</span>
+                </div>
+            </div>    
+        </div>
+        <div class="nextGame" id="submit">Next game</div>
         <div class="section1">
             <div class="players player1" id="player1Box">
                 <div class="playerNameRow">
@@ -46,7 +122,9 @@
                     </span>
                 </div>
                 <div class="score" id="p1Score">0</div>
-                <div class="crown" id="p1Crown">👑</div>
+                <div class="crown" id="p1Crown">
+                    <img class="crownImg" src="../img/crown2.png" alt="Crown">
+                </div>
                 </div>
                 <div class="players player2" id="player2Box">
                     <div class="playerNameRow">
@@ -56,7 +134,9 @@
                         </span>
                     </div>
                 <div class="score" id="p2Score">0</div>
-                <div class="crown" id="p2Crown">👑</div>
+                <div class="crown" id="p2Crown">
+                    <img class="crownImg" src="../img/crown2.png" alt="Crown">
+                </div>
             </div>
         </div>
         <div class="section2">
@@ -75,87 +155,6 @@
                     <p id="start-text">START</p>
                 </div>
             </div>
-            <!-- <p id="hint_input">[input your score here]</p>
-            <div class="sect2-1" id="inputSection">
-                <input type="tel" placeholder="Player 1" inputmode="decimal" class="numInput" id="p1ScoreInput"/>
-                <input type="tel" placeholder="Player 2" inputmode="decimal" class="numInput" id="p2ScoreInput"/>
-                <input type="tel" placeholder="Player 3" inputmode="decimal" class="numInput" id="p3ScoreInput"/>
-                <input type="tel" placeholder="Player 4" inputmode="decimal" class="numInput" id="p4ScoreInput"/>
-            </div> -->
-        </div>
-        <div class="dialog-section">
-            <div class="outputTitle">Selected the player and enter the score :</div>
-            <div class="pNameSection">
-                <!-- <div class="dialog-pName-container"> -->
-                    <div class="dialog-pName" id="dp1Name">Player 1</div>
-                    <div class="dialog-pName" id="dp2Name">Player 2</div>
-                    <div class="dialog-pName" id="dp3Name">Player 3</div>
-                    <div class="dialog-pName" id="dp4Name">Player 4</div>
-                <!-- </div> -->
-                <!-- <div class="dialog-score-container"> -->
-                    <span class="roundScore" id="dp1Score"></span>
-                    <span class="roundScore" id="dp2Score"></span>
-                    <span class="roundScore" id="dp3Score"></span>
-                    <span class="roundScore" id="dp4Score"></span>
-                <!-- </div> -->
-            </div>
-            <div class="dialogLower">
-                <div class="outputTitle">Score :</div>
-                <div class="output">
-                    <span></span>
-                </div>
-                <div class="keys">
-                    <div data-key="1"class="key">
-                        <span>1</span>
-                    </div>
-                    <div data-key="2"class="key">
-                        <span>2</span>
-                    </div>
-                    <div data-key="3"class="key">
-                        <span>3</span>
-                    </div>
-                    <div data-key="4"class="key">
-                        <span>4</span>
-                    </div>
-                    <div data-key="5"class="key">
-                        <span>5</span>
-                    </div>
-                    <div data-key="6"class="key">
-                        <span>6</span>
-                    </div>
-                    <div data-key="7"class="key">
-                        <span>7</span>
-                    </div>
-                    <div data-key="8"class="key">
-                        <span>8</span>
-                    </div>
-                    <div data-key="9"class="key">
-                        <span>9</span>
-                    </div>
-                    <div data-key="10"class="key" id="10">
-                        <span>10</span>
-                    </div>
-                    <div data-key="11"class="key">
-                        <span>11</span>
-                    </div>
-                    <div data-key="12"class="key">
-                        <span>12</span>
-                    </div>
-                    <div data-key="13"class="key">
-                        <span>13</span>
-                    </div>
-                    <div data-key="30"class="key smile">
-                        <img src="../img/smile2.png" alt="Smile" title="Smile">
-                    </div>
-                    <div data-key="backspace"class="key operator">
-                        <span>«</span>
-                    </div>
-                    <div data-key="confirm"class="key operator confirm">
-                        <span>✔</span>
-                    </div>
-                </div>    
-            </div>
-            <div class="nextGame" id="submit">Next game</div>  
         </div>
         <div class="section3">
             <div class="players player3" id="player3Box">
@@ -166,7 +165,9 @@
                     </span>
                 </div>
                 <div class="score" id="p3Score">0</div>
-                <div class="crown" id="p3Crown">👑</div>
+                <div class="crown" id="p3Crown">
+                    <img class="crownImg" src="../img/crown2.png" alt="Crown">
+                </div>
             </div>
             <div class="players player4" id="player4Box">
                 <div class="playerNameRow">
@@ -176,16 +177,29 @@
                     </span>
                 </div>
                 <div class="score" id="p4Score">0</div>
-                <div class="crown" id="p4Crown">👑</div>
+                <div class="crown" id="p4Crown">
+                    <img class="crownImg" src="../img/crown2.png" alt="Crown">
+                </div>
             </div>
         </div>    
-        <div class="sect2-2">
-            <input type="button" value="Restore" class="button" id="restore">
-            <input type="button" value="Undo" class="button" id="undo">
-            <input type="button" value="Clear" class="button" id="clear">
-        </div>
         <!-- <div id="restoredata">⟲</div> -->
     </main>
+    <div class="sect2-2">  
+        <div>
+
+            <div class="tooltip">&#x1F6C8;
+                <span class="tooltiptext">●  If you accidentally refersh the page, press "Restore" to get back the score.</span>
+            </div>
+        </div>
+        <div class="buttonSect">
+            <input type="button" value="Restore" class="button" id="restore">
+            <input type="button" value="Clear All" class="button" id="clear">
+            <input type="button" value="Undo" class="button" id="undo">
+        </div>
+    </div>
+    <div class="tooltip-section">
+
+    </div>
     <footer>
         
         <div class="scoreboardTitle">

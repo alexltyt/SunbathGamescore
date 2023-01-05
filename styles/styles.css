@@ -106,7 +106,16 @@ main{
     cursor: pointer;
 }
 .crown{
-    font-size: 2.5rem;
+    display: flex;
+    flex-direction: row;
+    text-align: center;
+    grid-template-rows: repeat(1);
+}
+
+.crownImg{
+    width: 3rem;
+    margin-left: auto;
+    margin-right: auto;
 }
 .winners{
     border: solid var(--flame) 10px;
@@ -147,7 +156,7 @@ main{
 }
 
 .button{
-    width: 20%;
+    width: 6rem;
     height: 1.5rem;
     border-radius: 8px;
     background-color: var(--light-blue);
@@ -159,7 +168,6 @@ main{
     -webkit-text-fill-color: transparent;
     transition: 0.4s;
     cursor: pointer;
-    
 }
 .section2{
     width: 100%;
@@ -171,12 +179,45 @@ main{
     gap: 1.2rem;
 }
 .sect2-2{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    vertical-align: middle;
     margin-top: 1rem;
-    margin-bottom: 1rem;
+    margin-bottom: 0.5rem;
+    margin-left: 0;
+}
+.sect2-2 input, .buttonSect{
     display: flex;
     justify-content: center;
-    gap: 2rem;
+    gap: 1rem;
     height: 1.5rem;
+}
+.tooltip {
+    position: relative;
+    display: inline-block;
+    border-bottom: 1px dotted black;
+    margin-right: 0.2rem;
+}
+  
+.tooltip .tooltiptext {
+visibility: hidden;
+width: 13rem;
+text-align: left;
+background-color: var(--mandarin);
+color: var(--darker-blue);
+border-radius: 6px;
+padding: 13px;
+opacity: 80%;
+margin-top: 2rem;
+
+/* Position the tooltip */
+position:absolute;
+}
+
+.tooltip:hover .tooltiptext {
+visibility: visible;
 }
 .section1,.section3{
     display: flex;
@@ -377,7 +418,7 @@ html, body {
   .sidenav a {
     padding: 8px 8px 8px 32px;
     text-decoration: none;
-    font-size: 25px;
+    font-size: 2rem;
     color: var(--darker-blue);
     display: block;
     transition: 0.3s;
@@ -404,8 +445,8 @@ html, body {
     .sidenav a {font-size: 18px;}
 }
 .dialog-section{
-    margin-left: auto;
-    margin-right: auto;
+    margin-left: 5%;
+    margin-right: 5%;
     width: 90%;
 }
 .pNameSection{
@@ -421,7 +462,7 @@ html, body {
 }
 .outputTitle{
     text-align: center;
-    margin-top: 0.8rem;
+    margin-top: 0.3rem;
 }
 .dialog-pName{
     border-radius: 8px;
@@ -429,13 +470,24 @@ html, body {
     font-size:0.5rem;
     cursor: pointer;
     border: solid var(--flame) 1px;
+    margin-top: 0.5rem;
+}
+.dialogLower{
+    margin-left: 5%;
+    margin-right: 5%;
+    max-width: 90%;
+    align-items: center;
 }
 .output{
-    min-height: 3rem;
+    min-height: 2rem;
+    font-size: 1.2rem;
+    margin-bottom: 0.5rem;
+    max-width: 360px;
+    border: 1px red solid;
+    white-space: nowrap;
+    overflow: hidden;
     display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 1.5rem;
+    justify-content: flex-end;
 }
 @keyframes mymove {
     0%{font-size: 100px;opacity: 10%;}
@@ -444,7 +496,6 @@ html, body {
     0%{font-size: 120rem;}
   }
 .keys{
-    margin-top: 1rem;
     display: grid;
     grid-template-columns: repeat(4, 1fr);
     grid-template-rows: repeat(4,1fr);
