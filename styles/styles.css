@@ -219,6 +219,11 @@ position:absolute;
 .tooltip:hover .tooltiptext {
 visibility: visible;
 }
+
+.tooltip:active .tooltiptext {
+visibility: visible;
+}
+
 .section1,.section3{
     display: flex;
     flex-direction: row;
@@ -483,7 +488,6 @@ html, body {
     font-size: 1.2rem;
     margin-bottom: 0.5rem;
     max-width: 360px;
-    border: 1px red solid;
     white-space: nowrap;
     overflow: hidden;
     display: flex;
