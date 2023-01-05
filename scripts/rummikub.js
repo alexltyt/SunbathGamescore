@@ -553,10 +553,8 @@ const pauseTimer = document.getElementById("pauseTimer");
 pauseTimer.addEventListener("click",()=>{
     pauseCheck = !pauseCheck;
     if (pauseCheck){
-        pauseTimer.style.textAlign = "right";
-        pauseTimer.innerHTML = "⊳";
+        pauseTimer.innerHTML = "✔";
     }else{
-        pauseTimer.style.textAlign = "center";
         pauseTimer.innerHTML = "||";
     }
     
