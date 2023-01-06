@@ -39,7 +39,6 @@ var p3Total = 0;
 var p4Total = 0;
 var scoreList = [];
 var scoreListRecord = [];
-let restore = false;
 let selectedPlayer = ""
 let winner = ""
 const dialogSection = document.querySelector(".dialog-section");
@@ -55,6 +54,9 @@ const p1Crown = document.getElementById("p1Crown");
 const p2Crown = document.getElementById("p2Crown");
 const p3Crown = document.getElementById("p3Crown");
 const p4Crown = document.getElementById("p4Crown");
+const tooltip = document.querySelector(".tooltip");
+const tooltipText = document.querySelector(".tooltiptext");
+let showTip = false;
 let pauseCheck = true;
 let input = "";
 dialogLower.style.display = "none";
@@ -64,6 +66,16 @@ p1Crown.style.display = "none";
 p2Crown.style.display = "none";
 p3Crown.style.display = "none";
 p4Crown.style.display = "none";
+
+tooltip.addEventListener("click",()=>{
+    if (showTip === false){
+        tooltipText.style.visibility = "visible";
+        showTip = !showTip;
+    }else{
+        tooltipText.style.visibility = "hidden";
+        showTip = !showTip;
+    }
+})
 
 for (let player of players){
     player.addEventListener("click",()=>{
@@ -141,31 +153,6 @@ function reloadName(){
     }
 }
 
-restoredata.addEventListener("click",()=>{
-    let text = "Are you sure to restore data?";
-    if (confirm(text) == true) {
-        restore = true;
-        p1Score = localStorage.p1Score;
-        p2Score = localStorage.p2Score;
-        p3Score = localStorage.p3Score;
-        p4Score = localStorage.p4Score;
-        p1Name = localStorage.p1Name;
-        p2Name = localStorage.p2Name;
-        p3Name = localStorage.p3Name;
-        p4Name = localStorage.p4Name;
-        scoreListRecord = JSON.parse(localStorage.scoreListRecord);
-        showScore();
-        document.getElementById("p1Name").innerHTML = p1Name;
-        document.getElementById("p1Namebtm").innerHTML = p1Name;
-        document.getElementById("p2Name").innerHTML = p2Name;
-        document.getElementById("p2Namebtm").innerHTML = p2Name;
-        document.getElementById("p3Name").innerHTML = p3Name;
-        document.getElementById("p3Namebtm").innerHTML = p3Name;
-        document.getElementById("p4Name").innerHTML = p4Name;
-        document.getElementById("p4Namebtm").innerHTML = p4Name;
-        scoreboardDisplay();
-    }
-})
 const eachRoundContainer = document.getElementById("eachRoundContainer");
 eachRoundContainer.removeChild(eachRoundContainer.firstChild)
 
@@ -236,16 +223,78 @@ editP4Name.addEventListener("click",()=>{
 });
 
 submit.addEventListener("click", roundFinish);
+
+
+restoredata.addEventListener("click",()=>{
+    let text = "Are you sure to restore data?";
+    if (confirm(text) == true) {
+        p1Score = localStorage.p1Score;
+        if(p1Score==undefined){p1Score = 0;}
+        p2Score = localStorage.p2Score;
+        if(p2Score==undefined){p2Score = 0;}
+        p3Score = localStorage.p3Score;
+        if(p3Score==undefined){p3Score = 0;}
+        p4Score = localStorage.p4Score;
+        if(p4Score==undefined){p4Score = 0;}
+        p1Name = localStorage.p1Name;
+        if(p1Name==undefined){p1Name = "Player1";}
+        p2Name = localStorage.p2Name;
+        if(p2Name==undefined){p2Name = "Player2";}
+        p3Name = localStorage.p3Name;
+        if(p3Name==undefined){p3Name = "Player3";}
+        p4Name = localStorage.p4Name;
+        if(p4Name==undefined){p4Name = "Player4";}
+        scoreListRecord = JSON.parse(localStorage.scoreListRecord);
+        showScore();
+        document.getElementById("p1Name").innerHTML = p1Name;
+        document.getElementById("p1Namebtm").innerHTML = p1Name;
+        document.getElementById("p2Name").innerHTML = p2Name;
+        document.getElementById("p2Namebtm").innerHTML = p2Name;
+        document.getElementById("p3Name").innerHTML = p3Name;
+        document.getElementById("p3Namebtm").innerHTML = p3Name;
+        document.getElementById("p4Name").innerHTML = p4Name;
+        document.getElementById("p4Namebtm").innerHTML = p4Name;
+        scoreboardDisplay();
+        pauseCheck = true;
+    }
+})
+clear.addEventListener("click", ()=>{
+    let text = "Are you sure to start over?";
+    if (confirm(text) == true) {
+        scoreListRecord = [];
+        p1Total = 0;
+        p2Total = 0;
+        p3Total = 0;
+        p4Total = 0;
+        calTotal();
+        eachRoundContainer.innerHTML = "";
+        localStorage.clear();
+        document.getElementById("p1Name").innerHTML = "Player1";
+        document.getElementById("p1Namebtm").innerHTML = "Player1"; 
+        document.getElementById("p2Name").innerHTML = "Player2";
+        document.getElementById("p2Namebtm").innerHTML = "Player2"; 
+        document.getElementById("p3Name").innerHTML = "Player3";
+        document.getElementById("p3Namebtm").innerHTML = "Player3"; 
+        document.getElementById("p4Name").innerHTML = "Player4";
+        document.getElementById("p4Namebtm").innerHTML = "Player4"; 
+        pauseCheck = true;
+        timeSecond = 61;
+        timerSection.style.display = 'none';
+        hint.style.display = "none";
+        timer.style.display = 'flex';
+    }});
+
 undo.addEventListener("click", ()=>{
     let text = "Are you sure to remove the last input?";
     if (confirm(text) == true) {
+        eachRoundContainer.innerHTML = "";
         scoreListRecord.pop();
         calTotal();
-        eachRoundContainer.removeChild(eachRoundContainer.firstChild);
+        showScore();
+        scoreboardDisplay();
+        //eachRoundContainer.removeChild(eachRoundContainer.firstChild);
     } 
 });
-
-
 
 function roundFinish(){
     let confirmText = "Start next round?"
@@ -267,14 +316,11 @@ function roundFinish(){
             dp4Score.innerHTML = "";
             scoreboardDisplay();
             dialogSection.style.display = 'none';
-            localStorage.p1Score = p1Score;
-            localStorage.p2Score = p2Score;
-            localStorage.p3Score = p3Score;
-            localStorage.p4Score = p4Score;
-            localStorage.scoreListRecord = JSON.stringify(scoreListRecord);
+
             winner = "";
             timer.style.display = "grid";
             dialogLower.style.display = "none";
+            submit.style.display = "none";
         }
     }else{
         alert("Please enter score of all players.");
@@ -317,37 +363,16 @@ function showScore(){
     setTimeout(()=>{p2ScoreDisplay.style.visibility = "visible"},700);
     setTimeout(()=>{p3ScoreDisplay.style.visibility = "visible"},700);
     setTimeout(()=>{p4ScoreDisplay.style.visibility = "visible"},700);
+    localStorage.p1Score = p1Score;
+    localStorage.p2Score = p2Score;
+    localStorage.p3Score = p3Score;
+    localStorage.p4Score = p4Score;
+    localStorage.scoreListRecord = JSON.stringify(scoreListRecord);
 }
 
 function scoreboardDisplay(){
-    if (restore == true){
-        for (var i = 0; i <scoreListRecord.length; i++){
-            var eachRound = document.createElement("div");
-            eachRound.classList.add("eachRound");
-            const p1ScoreDisplay = document.createElement("div");
-            p1ScoreDisplay.classList.add("scorebox");
-            const p2ScoreDisplay = document.createElement("div");
-            p2ScoreDisplay.classList.add("scorebox");
-            const p3ScoreDisplay = document.createElement("div");
-            p3ScoreDisplay.classList.add("scorebox");
-            const p4ScoreDisplay = document.createElement("div");
-            p4ScoreDisplay.classList.add("scorebox");
-            const p1eachround = document.createTextNode(String(scoreListRecord.slice(i)[0][0]).padStart(2," "));
-            const p2eachround = document.createTextNode(String(scoreListRecord.slice(i)[0][1]).padStart(2," "));
-            const p3eachround = document.createTextNode(String(scoreListRecord.slice(i)[0][2]).padStart(2," "));
-            const p4eachround = document.createTextNode(String(scoreListRecord.slice(i)[0][3]).padStart(2," "));
-            p1ScoreDisplay.appendChild(p1eachround);
-            p2ScoreDisplay.appendChild(p2eachround);
-            p3ScoreDisplay.appendChild(p3eachround);
-            p4ScoreDisplay.appendChild(p4eachround);
-            eachRound.appendChild(p1ScoreDisplay);
-            eachRound.appendChild(p2ScoreDisplay);
-            eachRound.appendChild(p3ScoreDisplay);
-            eachRound.appendChild(p4ScoreDisplay);
-            eachRoundContainer.appendChild(eachRound);
-            restore = false;
-        }
-    }else{
+    eachRoundContainer.innerHTML = "";
+    for (var i = 0; i <scoreListRecord.length; i++){
         var eachRound = document.createElement("div");
         eachRound.classList.add("eachRound");
         const p1ScoreDisplay = document.createElement("div");
@@ -358,10 +383,10 @@ function scoreboardDisplay(){
         p3ScoreDisplay.classList.add("scorebox");
         const p4ScoreDisplay = document.createElement("div");
         p4ScoreDisplay.classList.add("scorebox");
-        const p1eachround = document.createTextNode(String(scoreListRecord.slice(-1)[0][0]).padStart(2," "));
-        const p2eachround = document.createTextNode(String(scoreListRecord.slice(-1)[0][1]).padStart(2," "));
-        const p3eachround = document.createTextNode(String(scoreListRecord.slice(-1)[0][2]).padStart(2," "));
-        const p4eachround = document.createTextNode(String(scoreListRecord.slice(-1)[0][3]).padStart(2," "));
+        const p1eachround = document.createTextNode(String(scoreListRecord.slice(i)[0][0]).padStart(2," "));
+        const p2eachround = document.createTextNode(String(scoreListRecord.slice(i)[0][1]).padStart(2," "));
+        const p3eachround = document.createTextNode(String(scoreListRecord.slice(i)[0][2]).padStart(2," "));
+        const p4eachround = document.createTextNode(String(scoreListRecord.slice(i)[0][3]).padStart(2," "));
         p1ScoreDisplay.appendChild(p1eachround);
         p2ScoreDisplay.appendChild(p2eachround);
         p3ScoreDisplay.appendChild(p3eachround);
@@ -371,9 +396,8 @@ function scoreboardDisplay(){
         eachRound.appendChild(p3ScoreDisplay);
         eachRound.appendChild(p4ScoreDisplay);
         eachRoundContainer.appendChild(eachRound);
+        }
     }
-
-}
 
 
 window.onbeforeunload = function (e) {
@@ -421,23 +445,6 @@ resetTimer.addEventListener("click",()=>{
     document.body.style.backgroundColor = "#062D51ff";
     }
 });
-
-const countDown = setInterval(() => {
-    if (pauseCheck === false ) {
-        timeSecond--;
-    }
-    displayTime(timeSecond);
-    if (timeSecond<11){
-        document.body.style.animation = 'party 1s linear infinite';
-    }  
-    if (timeSecond == 0 || timeSecond < 1) {
-        endCount();
-        clearInterval(countDown);
-        document.body.style.animation = "";
-        document.body.style.backgroundColor = "rgb(225, 251, 254)";
-    }
-}, 1000);
-
 
 player1box.addEventListener("click",()=>{
     if(timer.style.display == 'none'){
@@ -544,6 +551,7 @@ player4box.addEventListener("click",()=>{
 
 
 
+
 timer.addEventListener("click",()=>{
     p1ScoreDisplay.style.animation = "";
     p2ScoreDisplay.style.animation = "";
@@ -557,38 +565,25 @@ timer.addEventListener("click",()=>{
     delay(1000).then(()=> {timerSection.style.display = 'flex';
     hint.style.display = "grid";
     timer.style.display = 'none';
-    // if(dialogSection.style.display == "grid"){
-        //     dialogSection.style.display = "none";
-        // };
-    })
-    
-    clear.addEventListener("click", ()=>{
-        let text = "Are you sure to start over?";
-        if (confirm(text) == true) {
-            scoreListRecord = [];
-            p1Total = 0;
-            p2Total = 0;
-            p3Total = 0;
-            p4Total = 0;
-            calTotal();
-            eachRoundContainer.innerHTML = "";
-            localStorage.clear();
-            document.getElementById("p1Name").innerHTML = "Player1";
-            document.getElementById("p1Namebtm").innerHTML = "Player1"; 
-            document.getElementById("p2Name").innerHTML = "Player2";
-            document.getElementById("p2Namebtm").innerHTML = "Player2"; 
-            document.getElementById("p3Name").innerHTML = "Player3";
-            document.getElementById("p3Namebtm").innerHTML = "Player3"; 
-            document.getElementById("p4Name").innerHTML = "Player4";
-            document.getElementById("p4Namebtm").innerHTML = "Player4"; 
-            clearInterval(countDown);
-            timerSection.style.display = 'none';
-            hint.style.display = "none";
-            timer.style.display = 'flex';
-        }
     });
+});
 
-})
+const countDown = setInterval(() => {
+    if (pauseCheck === false ) {
+        timeSecond--;
+    }
+    displayTime(timeSecond);
+    if (timeSecond<11){
+        document.body.style.animation = 'party 1s linear infinite';
+    }  
+    if (timeSecond == 0 || timeSecond < 1) {
+        endCount();
+        clearInterval(countDown);
+        document.body.style.animation = "";
+        document.body.style.backgroundColor = "rgb(225, 251, 254)";
+    }
+}, 1000);
+
 const pauseTimer = document.getElementById("pauseTimer");
 pauseTimer.addEventListener("click",()=>{
     pauseCheck = !pauseCheck;
