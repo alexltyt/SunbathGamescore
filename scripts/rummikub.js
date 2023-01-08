@@ -434,10 +434,6 @@ resetTimer.addEventListener("click",()=>{
               document.body.style.backgroundColor = "rgb(225, 251, 254)";
             }
           }, 1000);
-        //   player1box.addEventListener("click",()=>{clearInterval(countDown);document.body.style.animation = "";});
-        //   player2box.addEventListener("click",()=>{clearInterval(countDown);document.body.style.animation = "";});
-        //   player3box.addEventListener("click",()=>{clearInterval(countDown);document.body.style.animation = "";});
-        //   player4box.addEventListener("click",()=>{clearInterval(countDown);document.body.style.animation = "";});
     }else{
     timeSecond = 61;
     document.body.style.animation = "flash 0.5s linear";
@@ -606,7 +602,7 @@ function delay(time) {
     return new Promise(resolve => setTimeout(resolve, time));
   }
   
-
+//
 function endCount() {
   timeH.innerHTML = "Time out";
 }

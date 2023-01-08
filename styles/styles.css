@@ -219,9 +219,8 @@ border-radius: 6px;
 padding: 13px;
 opacity: 80%;
 margin-top: 2rem;
-
-/* Position the tooltip */
 position:absolute;
+/* Position the tooltip */
 }
 
 /* .tooltip:hover .tooltiptext {
@@ -489,7 +488,8 @@ html, body {
     margin-bottom: 0.5rem;
     max-width: 100%;
     white-space: nowrap;
-    overflow:scroll;
+    overflow-x: auto; /* Hide horizontal scrollbar */
+    overflow-y: hidden;
     display: flex;
     justify-content: flex-end;
 }
