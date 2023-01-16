@@ -29,7 +29,7 @@ const clear = document.getElementById("clear");
 const hint_input = document.getElementById("hint_input");
 const restoredata = document.getElementById("restoredata");
 
-
+const winner = document.getElementById("timer");
 var p1Score = 0;
 var p2Score = 0;
 var p3Score = 0;
@@ -42,7 +42,10 @@ var scoreList = [];
 var scoreListRecord = [];
 let restore = false;
 
-document.querySelector('#inputSection').style.display = 'none';
+
+winner.addEventListener("click",()=>{
+    
+})
 player1box.addEventListener("click",()=>{
     document.querySelector('#inputSection').style.display = 'flex';
     player1box.classList.replace("players","winners")

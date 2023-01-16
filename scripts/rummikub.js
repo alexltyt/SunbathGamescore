@@ -285,7 +285,7 @@ clear.addEventListener("click", ()=>{
     }});
 
 undo.addEventListener("click", ()=>{
-    let text = "Are you sure to remove the last input?";
+    let text = "Are you sure to erase the last input?";
     if (confirm(text) == true) {
         eachRoundContainer.innerHTML = "";
         scoreListRecord.pop();
