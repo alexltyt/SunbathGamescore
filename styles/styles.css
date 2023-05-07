@@ -93,7 +93,7 @@ main{
     border:ridge var(--flame) 5px;
     border-radius: 20px;
     background-color:var(--mandarin);
-    height: 8rem;
+    height: 9rem;
     width: 42%;
     text-align: center;
     display: flex;
