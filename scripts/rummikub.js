@@ -59,6 +59,7 @@ const tooltipText = document.querySelector(".tooltiptext");
 let showTip = false;
 let pauseCheck = true;
 let input = "";
+let flashTrigger = true;
 dialogLower.style.display = "none";
 dialogSection.style.display = "none";
 submit.style.display = "none";
@@ -256,6 +257,7 @@ restoredata.addEventListener("click",()=>{
         document.getElementById("p4Namebtm").innerHTML = p4Name;
         scoreboardDisplay();
         pauseCheck = true;
+        flashTrigger = true;
     }
 })
 clear.addEventListener("click", ()=>{
@@ -278,6 +280,7 @@ clear.addEventListener("click", ()=>{
         document.getElementById("p4Name").innerHTML = "Player4";
         document.getElementById("p4Namebtm").innerHTML = "Player4"; 
         pauseCheck = true;
+        flashTrigger = true;
         timeSecond = 61;
         timerSection.style.display = 'none';
         hint.style.display = "none";
@@ -416,6 +419,7 @@ displayTime(timeSecond);
 
 timerSection.style.display = 'none';
 resetTimer.addEventListener("click",()=>{
+    flashTrigger = true;
     if (timeSecond==0){
         timeSecond = 61;
         document.body.style.animation = "flash 0.5s linear";
@@ -441,109 +445,145 @@ resetTimer.addEventListener("click",()=>{
     document.body.style.backgroundColor = "#062D51ff";
     }
 });
+const playerBoxes = [player1box, player2box, player3box, player4box];
 
-player1box.addEventListener("click",()=>{
-    if(timer.style.display == 'none'){
-        let text = p1Name + ' is the winner?';
-        if (confirm(text) == true) {
-            winner = "dp1Name";
-            player1box.classList.replace("players","winners")
-            if (player2box.classList.contains("winners")){
-                player2box.classList.replace("winners","players");
-            }else if(player3box.classList.contains("winners")){
-                player3box.classList.replace("winners","players");
-            }else if (player4box.classList.contains("winners")){
-                player4box.classList.replace("winners","players");
-            };
-            dp1Score.innerHTML = "0";
-            timerSection.style.display = 'none';
-            hint.style.display = "none";
-            document.body.style.animation = "";
-            dialogSection.style.display = "grid";
-            pauseCheck = true;
-            p2Crown.style.display = "none";
-            p3Crown.style.display = "none";
-            p4Crown.style.display = "none";
-            p1Crown.style.display = "grid";
-        }
+playerBoxes.forEach((box) => {
+  box.addEventListener("click", () => {
+    document.body.style.animation = "";
+    if (timer.style.display == 'none') {
+      const playerIndex = playerBoxes.indexOf(box);
+      const playerName = window["p" + (playerIndex + 1) + "Name"];
+      const text = `${playerName} is the winner?`;
+
+      if (confirm(text)) {
+        winner = "dp" + (playerIndex + 1) + "Name";
+        box.classList.replace("players", "winners");
+        
+        playerBoxes.forEach((otherBox, index) => {
+          if (index !== playerIndex && otherBox.classList.contains("winners")) {
+            otherBox.classList.replace("winners", "players");
+          }
+        });
+
+        const playerScore = window["dp" + (playerIndex + 1) + "Score"];
+        playerScore.innerHTML = "0";
+        timerSection.style.display = 'none';
+        hint.style.display = "none";
+        dialogSection.style.display = "grid";
+        pauseCheck = true;
+        flashTrigger = false;
+
+        playerBoxes.forEach((otherBox, index) => {
+          const crown = window["p" + (index + 1) + "Crown"];
+          crown.style.display = (index === playerIndex) ? "grid" : "none";
+        });
+      }
     }
+  });
 });
 
-player2box.addEventListener("click",()=>{
-    if(timer.style.display == 'none'){
-        let text = p2Name + ' is the winner?';
-        if (confirm(text) == true) {
-            winner = "dp2Name";
-            player2box.classList.replace("players","winners")
-            if (player1box.classList.contains("winners")){
-                player1box.classList.replace("winners","players");
-            }else if(player3box.classList.contains("winners")){
-                player3box.classList.replace("winners","players");
-            }else if (player4box.classList.contains("winners")){
-                player4box.classList.replace("winners","players");
-            };
-            dp2Score.innerHTML=0;
-            timerSection.style.display = 'none';
-            hint.style.display = "none";
-            document.body.style.animation = "";
-            dialogSection.style.display = "grid";
-            pauseCheck = true;
-            p1Crown.style.display = "none";
-            p3Crown.style.display = "none";
-            p4Crown.style.display = "none";
-            p2Crown.style.display = "grid";
-        }}
-    });
-player3box.addEventListener("click",()=>{
-    if(timer.style.display == 'none'){
-        let text = p3Name + ' is the winner?';
-        if (confirm(text) == true) {
-            winner = "dp3Name";
-            player3box.classList.replace("players","winners")
-            if (player1box.classList.contains("winners")){
-                player1box.classList.replace("winners","players");
-            }else if(player2box.classList.contains("winners")){
-                player2box.classList.replace("winners","players");
-            }else if (player4box.classList.contains("winners")){
-                player4box.classList.replace("winners","players");
-            };
-            dp3Score.innerHTML = "0";
-            timerSection.style.display = 'none';
-            hint.style.display = "none";
-            document.body.style.animation = "";
-            dialogSection.style.display = "grid";
-            pauseCheck = true;
-            p1Crown.style.display = "none";
-            p2Crown.style.display = "none";
-            p4Crown.style.display = "none";
-            p3Crown.style.display = "grid";
-        }}
-    });
-player4box.addEventListener("click",()=>{
-    if(timer.style.display == 'none'){
-        let text = p4Name + ' is the winner?';
-        if (confirm(text) == true) {
-            winner = "dp4Name";
-            player4box.classList.replace("players","winners")
-            if (player1box.classList.contains("winners")){
-                player1box.classList.replace("winners","players");
-            }else if(player2box.classList.contains("winners")){
-                player2box.classList.replace("winners","players");
-            }else if (player3box.classList.contains("winners")){
-                player3box.classList.replace("winners","players");
-            };
-            dp4Score.innerHTML = "0";
-            timerSection.style.display = 'none';
-            hint.style.display = "none";
-            document.body.style.animation = "";
-            dialogSection.style.display = "grid";
-            pauseCheck = true;
-            p1Crown.style.display = "none";
-            p2Crown.style.display = "none";
-            p3Crown.style.display = "none";
-            p4Crown.style.display = "grid";
-        }}
-});
+// player1box.addEventListener("click",()=>{
+//     if(timer.style.display == 'none'){
+//         let text = p1Name + ' is the winner?';
+//         if (confirm(text) == true) {
+//             winner = "dp1Name";
+//             player1box.classList.replace("players","winners")
+//             if (player2box.classList.contains("winners")){
+//                 player2box.classList.replace("winners","players");
+//             }else if(player3box.classList.contains("winners")){
+//                 player3box.classList.replace("winners","players");
+//             }else if (player4box.classList.contains("winners")){
+//                 player4box.classList.replace("winners","players");
+//             };
+//             dp1Score.innerHTML = "0";
+//             timerSection.style.display = 'none';
+//             hint.style.display = "none";
+//             document.body.style.animation = "";
+//             dialogSection.style.display = "grid";
+//             pauseCheck = true;
+//             p2Crown.style.display = "none";
+//             p3Crown.style.display = "none";
+//             p4Crown.style.display = "none";
+//             p1Crown.style.display = "grid";
+//         }
+//     }
+// });
+
+// player2box.addEventListener("click",()=>{
+//     if(timer.style.display == 'none'){
+//         let text = p2Name + ' is the winner?';
+//         if (confirm(text) == true) {
+//             winner = "dp2Name";
+//             player2box.classList.replace("players","winners")
+//             if (player1box.classList.contains("winners")){
+//                 player1box.classList.replace("winners","players");
+//             }else if(player3box.classList.contains("winners")){
+//                 player3box.classList.replace("winners","players");
+//             }else if (player4box.classList.contains("winners")){
+//                 player4box.classList.replace("winners","players");
+//             };
+//             dp2Score.innerHTML=0;
+//             timerSection.style.display = 'none';
+//             hint.style.display = "none";
+//             document.body.style.animation = "";
+//             dialogSection.style.display = "grid";
+//             pauseCheck = true;
+//             p1Crown.style.display = "none";
+//             p3Crown.style.display = "none";
+//             p4Crown.style.display = "none";
+//             p2Crown.style.display = "grid";
+//         }}
+//     });
+// player3box.addEventListener("click",()=>{
+//     if(timer.style.display == 'none'){
+//         let text = p3Name + ' is the winner?';
+//         if (confirm(text) == true) {
+//             winner = "dp3Name";
+//             player3box.classList.replace("players","winners")
+//             if (player1box.classList.contains("winners")){
+//                 player1box.classList.replace("winners","players");
+//             }else if(player2box.classList.contains("winners")){
+//                 player2box.classList.replace("winners","players");
+//             }else if (player4box.classList.contains("winners")){
+//                 player4box.classList.replace("winners","players");
+//             };
+//             dp3Score.innerHTML = "0";
+//             timerSection.style.display = 'none';
+//             hint.style.display = "none";
+//             document.body.style.animation = "";
+//             dialogSection.style.display = "grid";
+//             pauseCheck = true;
+//             p1Crown.style.display = "none";
+//             p2Crown.style.display = "none";
+//             p4Crown.style.display = "none";
+//             p3Crown.style.display = "grid";
+//         }}
+//     });
+// player4box.addEventListener("click",()=>{
+//     if(timer.style.display == 'none'){
+//         let text = p4Name + ' is the winner?';
+//         if (confirm(text) == true) {
+//             winner = "dp4Name";
+//             player4box.classList.replace("players","winners")
+//             if (player1box.classList.contains("winners")){
+//                 player1box.classList.replace("winners","players");
+//             }else if(player2box.classList.contains("winners")){
+//                 player2box.classList.replace("winners","players");
+//             }else if (player3box.classList.contains("winners")){
+//                 player3box.classList.replace("winners","players");
+//             };
+//             dp4Score.innerHTML = "0";
+//             timerSection.style.display = 'none';
+//             hint.style.display = "none";
+//             document.body.style.animation = "";
+//             dialogSection.style.display = "grid";
+//             pauseCheck = true;
+//             p1Crown.style.display = "none";
+//             p2Crown.style.display = "none";
+//             p3Crown.style.display = "none";
+//             p4Crown.style.display = "grid";
+//         }}
+// });
 
 
 
@@ -554,6 +594,7 @@ timer.addEventListener("click",()=>{
     p3ScoreDisplay.style.animation = "";
     p4ScoreDisplay.style.animation = "";
     pauseCheck = false;
+    flashTrigger = true;
     timeSecond = 61;
     document.body.style.animation = "flash 0.5s linear";
     setTimeout(function(){document.body.style.animation = '';}, 2000);
@@ -569,7 +610,7 @@ const countDown = setInterval(() => {
         timeSecond--;
     }
     displayTime(timeSecond);
-    if (timeSecond<11){
+    if (timeSecond<11 && flashTrigger == true){
         document.body.style.animation = 'party 1s linear infinite';
     }  
     if (timeSecond == 0 || timeSecond < 1) {
