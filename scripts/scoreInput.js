@@ -3,10 +3,10 @@ const p2ScoreDisplay = document.getElementById("p2Score");
 const p3ScoreDisplay = document.getElementById("p3Score");
 const p4ScoreDisplay = document.getElementById("p4Score");
 
-const p1ScoreInput = document.getElementById("p1ScoreInput");
-const p2ScoreInput = document.getElementById("p2ScoreInput");
-const p3ScoreInput = document.getElementById("p3ScoreInput");
-const p4ScoreInput = document.getElementById("p4ScoreInput");
+const p1ScoreInput = document.getElementById("dp1Score");
+const p2ScoreInput = document.getElementById("dp2Score");
+const p3ScoreInput = document.getElementById("dp3Score");
+const p4ScoreInput = document.getElementById("dp4Score");
 const inputSection = document.getElementById("inputSection");
 
 const player1box = document.getElementById("player1Box");
@@ -44,7 +44,7 @@ let winner = ""
 const dialogSection = document.querySelector(".dialog-section");
 const players = document.querySelectorAll(".dialog-pName");
 const keys = document.querySelectorAll(".key");
-const output = document.querySelector(".output");
+const output = document.querySelector(".big2Output");
 const dp1Score = document.getElementById("dp1Score");
 const dp2Score = document.getElementById("dp2Score");
 const dp3Score = document.getElementById("dp3Score");
@@ -102,59 +102,49 @@ for (let player of players){
     })
 }
 
-for (let key of keys){
-    const keyValue = key.dataset.key;
-    key.addEventListener("click",()=>{
-        
-        dp1Score.style.animation = "";
-        dp2Score.style.animation = "";
-        dp3Score.style.animation = "";
-        dp4Score.style.animation = "";
-        if (keyValue == "confirm"){
-            if(input==""){
-                alert("Please enter the score.");
-            }else{
-            input = input.slice(0,-1);
-            let result = eval(input);
-            switch(selectedPlayer){
-                case'dp1Name':
-                dp1Score.style.animation = "mymove 1s";
-                dp1Score.innerHTML = result;
-                break;            
-                case'dp2Name':
-                dp2Score.style.animation = "mymove 1s";
-                dp2Score.innerHTML = result;
-                break;            
-                case'dp3Name':
-                dp3Score.style.animation = "mymove 1s";
-                dp3Score.innerHTML = result;
-                break;            
-                case'dp4Name':
-                dp4Score.style.animation = "mymove 1s";
-                dp4Score.innerHTML = result;
-                break;            
-            }}
-            input = "";
-            output.innerHTML = input;
-            dialogLower.style.display = "none";
-            if (dp1Score.innerHTML != "" && dp2Score.innerHTML !=""&&dp3Score.innerHTML!=""&&dp4Score.innerHTML!=""){
-                submit.style.display = "grid";
-            }
+let result = 0;
+for (let key of keys) {
+  const keyValue = key.dataset.key;
+  key.addEventListener("click", () => {
+    dp1Score.style.animation = "";
+    dp2Score.style.animation = "";
+    dp3Score.style.animation = "";
+    dp4Score.style.animation = "";
+    if (keyValue == "confirm") {
+      if (result == 0) {
+        alert("Please enter the score.");
+      } else {
+        switch (selectedPlayer) {
+          case "dp1Name":
+            dp1Score.style.animation = "mymove 1s";
+            dp1Score.innerHTML = result;
+            break;
+          case "dp2Name":
+            dp2Score.style.animation = "mymove 1s";
+            dp2Score.innerHTML = result;
+            break;
+          case "dp3Name":
+            dp3Score.style.animation = "mymove 1s";
+            dp3Score.innerHTML = result;
+            break;
+          case "dp4Name":
+            dp4Score.style.animation = "mymove 1s";
+            dp4Score.innerHTML = result;
+            break;
         }
-        else if(keyValue=="backspace") {
-            input = input.slice(0,-1);
-            plusindex = input.lastIndexOf("+");
-            input = input.slice(0,plusindex+1);
-            output.innerHTML = input;
-        }
-        else{
-            input += keyValue;
-            input += "+";
-            output.innerHTML = input;
-        }
-    })
+      }
+      result = 0;
+      output.innerHTML = result;
+      dialogLower.style.display = "none";
+      if (dp1Score.innerHTML != "" && dp2Score.innerHTML != "" && dp3Score.innerHTML != "" && dp4Score.innerHTML != "") {
+        submit.style.display = "grid";
+      }
+    } else {
+      result = parseInt(keyValue);
+      output.innerHTML = result;
+    }
+  })
 }
-
 
 function reloadName(){
     for (var i=0;i<players.length;i++){
@@ -179,7 +169,7 @@ editP1Name.addEventListener("click",()=>{
             p1Name = "Player1";
         }
         document.getElementById("p1Name").innerHTML = p1Name;
-        document.getElementById("p1Namebtm").innerHTML = p1Name; 
+        document.getElementById("p1Namebtm").innerHTML = p1Name;
         dp1Name.innerHTML = p1Name;
         localStorage.p1Name = p1Name;
         reloadName();
@@ -196,7 +186,7 @@ editP2Name.addEventListener("click",()=>{
         p2Name = "Player2";
     }
     document.getElementById("p2Name").innerHTML = p2Name;
-    document.getElementById("p2Namebtm").innerHTML = p2Name; 
+    document.getElementById("p2Namebtm").innerHTML = p2Name;
     dp2Name.innerHTML = p2Name;
     localStorage.p2Name = p2Name;
     reloadName();
@@ -214,7 +204,7 @@ editP3Name.addEventListener("click",()=>{
     }
 
     document.getElementById("p3Name").innerHTML = p3Name;
-    document.getElementById("p3Namebtm").innerHTML = p3Name; 
+    document.getElementById("p3Namebtm").innerHTML = p3Name;
     dp3Name.innerHTML = p3Name;
     localStorage.p3Name = p3Name;
     reloadName();
@@ -231,7 +221,7 @@ editP4Name.addEventListener("click",()=>{
             p4Name = "Player4";
         }
         document.getElementById("p4Name").innerHTML = p4Name;
-        document.getElementById("p4Namebtm").innerHTML = p4Name; 
+        document.getElementById("p4Namebtm").innerHTML = p4Name;
         dp4Name.innerHTML = p4Name;
         localStorage.p4Name = p4Name;
         reloadName();
@@ -289,13 +279,13 @@ clear.addEventListener("click", ()=>{
         eachRoundContainer.innerHTML = "";
         localStorage.clear();
         document.getElementById("p1Name").innerHTML = "Player1";
-        document.getElementById("p1Namebtm").innerHTML = "Player1"; 
+        document.getElementById("p1Namebtm").innerHTML = "Player1";
         document.getElementById("p2Name").innerHTML = "Player2";
-        document.getElementById("p2Namebtm").innerHTML = "Player2"; 
+        document.getElementById("p2Namebtm").innerHTML = "Player2";
         document.getElementById("p3Name").innerHTML = "Player3";
-        document.getElementById("p3Namebtm").innerHTML = "Player3"; 
+        document.getElementById("p3Namebtm").innerHTML = "Player3";
         document.getElementById("p4Name").innerHTML = "Player4";
-        document.getElementById("p4Namebtm").innerHTML = "Player4"; 
+        document.getElementById("p4Namebtm").innerHTML = "Player4";
     }});
 
 undo.addEventListener("click", ()=>{
@@ -307,13 +297,40 @@ undo.addEventListener("click", ()=>{
         showScore();
         scoreboardDisplay();
         //eachRoundContainer.removeChild(eachRoundContainer.firstChild);
-    } 
+    }
 });
+
+function doubleOrTriple(){
+    if (parseInt(dp1Score.innerHTML) >=10 && parseInt(dp1Score.innerHTML) <=12){
+        dp1Score.innerHTML *= 2;
+    }else if(parseInt(dp1Score.innerHTML)==13){
+        dp1Score.innerHTML *= 3;
+    }
+    if (parseInt(dp2Score.innerHTML) >=10 && parseInt(dp2Score.innerHTML) <=12){
+        dp2Score.innerHTML *= 2;
+    }else if(parseInt(dp2Score.innerHTML)==13){
+        dp2Score.innerHTML *= 3;
+    }
+    if (parseInt(dp3Score.innerHTML) >=10 && parseInt(dp3Score.innerHTML) <=12){
+        dp3Score.innerHTML *= 2;
+    }else if(parseInt(dp3Score.innerHTML)==13){
+        dp3Score.innerHTML *= 3;
+    }
+    if (parseInt(dp4Score.innerHTML) >=10 && parseInt(dp4Score.innerHTML) <=12){
+        dp4Score.innerHTML *= 2;
+    }else if(parseInt(dp4Score.innerHTML)==13){
+        dp4Score.innerHTML *= 3;
+    }
+}
 
 function roundFinish(){
     let confirmText = "Start next round?"
-    if(dp1Score.innerHTML != "" && dp2Score.innerHTML != "" && dp3Score.innerHTML != "" && dp4Score.innerHTML != ""){
+    if(parseInt(dp1Score.innerHTML) >=0 && parseInt(dp1Score.innerHTML) <=13 &&
+    parseInt(dp2Score.innerHTML) >=0 && parseInt(dp2Score.innerHTML) <=13 &&
+    parseInt(dp3Score.innerHTML) >=0 && parseInt(dp3Score.innerHTML) <=13 &&
+    parseInt(dp4Score.innerHTML) >=0 && parseInt(dp4Score.innerHTML) <=13){
         if (confirm(confirmText)==true){
+            doubleOrTriple();
             scoreList = [];
             scoreList.push(parseInt(dp1Score.innerHTML),
                            parseInt(dp2Score.innerHTML),
@@ -339,9 +356,8 @@ function roundFinish(){
             winCheck=false;
         }
     }else{
-        alert("Please enter score of all players.");
+        alert("Please enter 0-13 for each player.");
     }
-
 }
 
 function calTotal(){
@@ -434,7 +450,7 @@ player1box.addEventListener("click",()=>{
             }else if (player4box.classList.contains("winners")){
                 player4box.classList.replace("winners","players");
             };
-            dp1Score.innerHTML = "0";
+            p1ScoreInput.innerHTML = "0";
             document.body.style.animation = "";
             dialogSection.style.display = "grid";
             p2Crown.style.display = "none";
@@ -522,7 +538,7 @@ function openNav() {
     document.getElementById("mySidenav").style.width = "250px";
     document.getElementById("main").style.marginLeft = "250px";
   }
-  
+
   /* Set the width of the side navigation to 0 and the left margin of the page content to 0 */
   function closeNav() {
     document.getElementById("mySidenav").style.width = "0";

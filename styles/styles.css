@@ -513,6 +513,10 @@ html, body {
     display: flex;
     justify-content: flex-end;
 }
+.big2Output{
+    font-size: 3rem;
+    text-align: center;
+}
 @keyframes mymove {
     0%{font-size: 100px;opacity: 10%;}
   }
