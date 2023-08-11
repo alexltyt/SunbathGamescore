@@ -356,3 +356,20 @@ function closeNav() {
     document.getElementById("mySidenav").style.width = "0";
     document.getElementById("main").style.marginLeft = "0";
 }
+
+
+toggle.addEventListener('change', (event) => {
+  if (event.target.checked) {
+    // Toggle is ON
+    // Perform action when toggle is switched on
+    console.log('Toggle is ON');
+    // Add your action here
+  } else {
+    // Toggle is OFF
+    // Perform action when toggle is switched off
+    console.log('Toggle is OFF');
+    // Add your action here
+  }
+});
+
+

@@ -300,28 +300,50 @@ undo.addEventListener("click", ()=>{
     }
 });
 
-function doubleOrTriple(){
-    if (parseInt(dp1Score.innerHTML) >=10 && parseInt(dp1Score.innerHTML) <=12){
-        dp1Score.innerHTML *= 2;
-    }else if(parseInt(dp1Score.innerHTML)==13){
-        dp1Score.innerHTML *= 3;
+// function doubleOrTriple(){
+//     if (parseInt(dp1Score.innerHTML) >=10 && parseInt(dp1Score.innerHTML) <=12){
+//         dp1Score.innerHTML *= 2;
+//     }else if(parseInt(dp1Score.innerHTML)==13){
+//         dp1Score.innerHTML *= 3;
+//     }
+//     if (parseInt(dp2Score.innerHTML) >=10 && parseInt(dp2Score.innerHTML) <=12){
+//         dp2Score.innerHTML *= 2;
+//     }else if(parseInt(dp2Score.innerHTML)==13){
+//         dp2Score.innerHTML *= 3;
+//     }
+//     if (parseInt(dp3Score.innerHTML) >=10 && parseInt(dp3Score.innerHTML) <=12){
+//         dp3Score.innerHTML *= 2;
+//     }else if(parseInt(dp3Score.innerHTML)==13){
+//         dp3Score.innerHTML *= 3;
+//     }
+//     if (parseInt(dp4Score.innerHTML) >=10 && parseInt(dp4Score.innerHTML) <=12){
+//         dp4Score.innerHTML *= 2;
+//     }else if(parseInt(dp4Score.innerHTML)==13){
+//         dp4Score.innerHTML *= 3;
+//     }
+// }
+
+function doubleOrTriple(scoreElement) {
+    if (isDouble10===true){
+    const score = parseInt(scoreElement.innerHTML);
+    if (score >= 10 && score <= 12) {
+        scoreElement.innerHTML = score * 2;
+    } else if (score === 13) {
+        scoreElement.innerHTML = score * 3;
     }
-    if (parseInt(dp2Score.innerHTML) >=10 && parseInt(dp2Score.innerHTML) <=12){
-        dp2Score.innerHTML *= 2;
-    }else if(parseInt(dp2Score.innerHTML)==13){
-        dp2Score.innerHTML *= 3;
-    }
-    if (parseInt(dp3Score.innerHTML) >=10 && parseInt(dp3Score.innerHTML) <=12){
-        dp3Score.innerHTML *= 2;
-    }else if(parseInt(dp3Score.innerHTML)==13){
-        dp3Score.innerHTML *= 3;
-    }
-    if (parseInt(dp4Score.innerHTML) >=10 && parseInt(dp4Score.innerHTML) <=12){
-        dp4Score.innerHTML *= 2;
-    }else if(parseInt(dp4Score.innerHTML)==13){
-        dp4Score.innerHTML *= 3;
+    }else if (isDouble8===true){
+        const score = parseInt(scoreElement.innerHTML);
+        if (score == 8 || score == 9) {
+            scoreElement.innerHTML = score * 2;
+        }else if (score >= 10 && score <= 12) {
+            scoreElement.innerHTML = score * 3;
+        } 
+        else if (score === 13) {
+            scoreElement.innerHTML = score * 4;
+        }
     }
 }
+
 
 function roundFinish(){
     let confirmText = "Start next round?"
@@ -330,7 +352,10 @@ function roundFinish(){
     parseInt(dp3Score.innerHTML) >=0 && parseInt(dp3Score.innerHTML) <=13 &&
     parseInt(dp4Score.innerHTML) >=0 && parseInt(dp4Score.innerHTML) <=13){
         if (confirm(confirmText)==true){
-            doubleOrTriple();
+            const scoreElements = [dp1Score, dp2Score, dp3Score, dp4Score];
+            scoreElements.forEach(scoreElement => {
+                doubleOrTriple(scoreElement);
+            });
             scoreList = [];
             scoreList.push(parseInt(dp1Score.innerHTML),
                            parseInt(dp2Score.innerHTML),
@@ -536,13 +561,42 @@ player4box.addEventListener("click",()=>{
 /* Set the width of the side navigation to 250px and the left margin of the page content to 250px */
 function openNav() {
     document.getElementById("mySidenav").style.width = "250px";
-    document.getElementById("main").style.marginLeft = "250px";
+    // document.getElementById("main").style.marginLeft = "250px";
   }
 
   /* Set the width of the side navigation to 0 and the left margin of the page content to 0 */
   function closeNav() {
     document.getElementById("mySidenav").style.width = "0";
-    document.getElementById("main").style.marginLeft = "0";
+    // document.getElementById("main").style.marginLeft = "0";
   }
 
 
+  const double10 = document.getElementById('double10');
+  const double8 = document.getElementById('double8');
+  let isDouble10 = true;
+  let isDouble8 = false;
+  double10.checked = true;
+
+  double10.addEventListener('change', (event) => {
+      if (event.target.checked) {
+          double8.checked = false;
+          isDouble8 = false;
+          isDouble10 = true;
+          console.log(`Toggle 10 is ${isDouble10}`);
+        } else {
+            isDouble10 = false;
+            console.log(`Toggle 10 is ${isDouble10}`);
+        }
+    });
+    
+    double8.addEventListener('change', (event) => {
+      if (event.target.checked) {
+        double10.checked = false;
+        isDouble10 = false;
+        isDouble8 = true;
+        console.log(`Toggle 8 is ${isDouble8}`);
+      } else {
+          isDouble8 = false;
+          console.log(`Toggle 8 is ${isDouble8}`);
+      }
+    });

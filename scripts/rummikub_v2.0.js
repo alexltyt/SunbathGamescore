@@ -24,7 +24,7 @@ var p2Name = "Player2"
 var p3Name = "Player3"
 var p4Name = "Player4"
 
-const submit = document.getElementById("submit");
+const nextGame = document.getElementById("submit");
 const undo = document.getElementById("undo");
 const clear = document.getElementById("clear");
 const restoredata = document.getElementById("restore");
@@ -62,7 +62,7 @@ let input = "";
 let flashTrigger = true;
 dialogLower.style.display = "none";
 dialogSection.style.display = "none";
-submit.style.display = "none";
+nextGame.style.display = "none";
 p1Crown.style.display = "none";
 p2Crown.style.display = "none";
 p3Crown.style.display = "none";
@@ -127,7 +127,7 @@ for (let key of keys){
             output.innerHTML = input;
             dialogLower.style.display = "none";
             if (dp1Score.innerHTML != "" && dp2Score.innerHTML !=""&&dp3Score.innerHTML!=""&&dp4Score.innerHTML!=""){
-                submit.style.display = "grid";
+                nextGame.style.display = "grid";
             }
         }
         else if(keyValue=="backspace") {
@@ -223,7 +223,7 @@ editP4Name.addEventListener("click",()=>{
     }
 });
 
-submit.addEventListener("click", roundFinish);
+nextGame.addEventListener("click", roundFinish);
 
 
 restoredata.addEventListener("click",()=>{
@@ -284,7 +284,7 @@ clear.addEventListener("click", ()=>{
         timeSecond = 61;
         timerSection.style.display = 'none';
         hint.style.display = "none";
-        timer.style.display = 'flex';
+        startIcon.style.display = 'flex';
     }});
 
 undo.addEventListener("click", ()=>{
@@ -319,11 +319,10 @@ function roundFinish(){
             dp4Score.innerHTML = "";
             scoreboardDisplay();
             dialogSection.style.display = 'none';
-
             winner = "";
-            timer.style.display = "grid";
+            startIcon.style.display = "grid";
             dialogLower.style.display = "none";
-            submit.style.display = "none";
+            nextGame.style.display = "none";
         }
     }else{
         alert("Please enter score of all players.");
@@ -332,21 +331,17 @@ function roundFinish(){
 }
 
 function calTotal(){
-    p1Total = 0;
-    p2Total = 0;
-    p3Total = 0;
-    p4Total = 0;
+    p1Score = 0;
+    p2Score = 0;
+    p3Score = 0;
+    p4Score = 0;
     for (var i = 0; i < scoreListRecord.length ; i++) {
         // console.log(scoreListRecord[i]);
-        p1Total += scoreListRecord[i][0];
-        p2Total += scoreListRecord[i][1];
-        p3Total += scoreListRecord[i][2];
-        p4Total += scoreListRecord[i][3];
+        p1Score += scoreListRecord[i][0];
+        p2Score += scoreListRecord[i][1];
+        p3Score += scoreListRecord[i][2];
+        p4Score += scoreListRecord[i][3];
     }
-    p1Score = 0-((p1Total - p2Total) + (p1Total-p3Total) + (p1Total-p4Total));
-    p2Score = 0-((p2Total - p1Total) + (p2Total-p3Total) + (p2Total-p4Total));
-    p3Score = 0-((p3Total - p1Total) + (p3Total-p2Total) + (p3Total-p4Total));
-    p4Score = 0-((p4Total - p1Total) + (p4Total-p2Total) + (p4Total-p3Total));
     showScore();
 }
 function showScore(){
@@ -408,79 +403,173 @@ window.onbeforeunload = function (e) {
 };
 
 //Timer//
-let timeSecond = 60;
+let timeLimit = 60;
+let timeSecond = timeLimit;
 const timeH = document.querySelector("h1");
 const resetTimer = document.getElementById("resetTimer");
 const timerSection = document.querySelector(".timer-section");
-const timer = document.getElementById("timer");
+const startIcon = document.getElementById("timer");
 const hint = document.getElementById("hint");
 hint.style.display = "none";
 displayTime(timeSecond);
 
 timerSection.style.display = 'none';
-resetTimer.addEventListener("click",()=>{
+let countDown;
+let timeLeft = 0; // Initialize timeLeft
+
+function startCountdown() {
+    timeLeft = timeLimit; // Reset timeLeft
+    clearInterval(countDown);
+    displayTime(timeLeft);
+
+    countDown = setInterval(() => {
+        if (pauseCheck === false && timeLeft > 0) {
+            timeLeft--;
+        }
+        displayTime(timeLeft);
+        if (timeLeft < 11 && flashTrigger === true) {
+            document.body.style.animation = 'party 1s linear infinite';
+        }
+        if (timeLeft === 0) {
+            clearInterval(countDown);
+            endCount();
+            document.body.style.animation = '';
+            document.body.style.backgroundColor = 'rgb(225, 251, 254)';
+        }
+    }, 1000);
+}
+
+function resetCountdown() {
+    clearInterval(countDown);
+    displayTime(timeLimit);
+    startCountdown();
+}
+
+
+startIcon.addEventListener('click', () => {
+    console.log('start');
+    p1ScoreDisplay.style.animation = '';
+    p2ScoreDisplay.style.animation = '';
+    p3ScoreDisplay.style.animation = '';
+    p4ScoreDisplay.style.animation = '';
+    
+    if (timeSecond <= 0) {
+        timeSecond = timeLimit;
+    }
+
+    pauseCheck = false;
     flashTrigger = true;
-    if (timeSecond==0){
-        timeSecond = 61;
-        document.body.style.animation = "flash 0.5s linear";
-        setTimeout(function(){document.body.style.animation = '';}, 2000);
-        document.body.style.backgroundColor = "#062D51ff";
-        const countDown = setInterval(() => {
-            timeSecond--;
-            displayTime(timeSecond);
-            if (timeSecond<11){
-              document.body.style.animation = 'party 1s linear infinite';
-            }  
-            if (timeSecond == 0 || timeSecond < 1) {
-              endCount();
-              clearInterval(countDown)
-              document.body.style.animation = "";
-              document.body.style.backgroundColor = "rgb(225, 251, 254)";
-            }
-          }, 1000);
-    }else{
-    timeSecond = 61;
-    document.body.style.animation = "flash 0.5s linear";
-    setTimeout(function(){document.body.style.animation = '';}, 2000);
-    document.body.style.backgroundColor = "#062D51ff";
+    document.body.style.animation = 'flash 0.5s linear';
+    
+    setTimeout(() => {
+        document.body.style.animation = '';
+    }, 2000);
+
+    document.body.style.backgroundColor = '#062D51ff';
+
+    delay(1000).then(() => {
+        timerSection.style.display = 'flex';
+        hint.style.display = 'grid';
+        startIcon.style.display = 'none';
+        startCountdown(); // Start the countdown
+    });
+});
+
+resetTimer.addEventListener('click', () => {
+    resetCountdown();
+});
+
+const pauseTimer = document.getElementById('pauseTimer');
+pauseTimer.addEventListener('click', () => {
+    pauseCheck = !pauseCheck;
+    
+    if (pauseCheck) {
+        pauseTimer.innerHTML = '✔';
+    } else {
+        pauseTimer.innerHTML = '||';
     }
 });
-const playerBoxes = [player1box, player2box, player3box, player4box];
 
-playerBoxes.forEach((box) => {
-  box.addEventListener("click", () => {
-    document.body.style.animation = "";
-    if (timer.style.display == 'none') {
-      const playerIndex = playerBoxes.indexOf(box);
-      const playerName = window["p" + (playerIndex + 1) + "Name"];
-      const text = `${playerName} is the winner?`;
+function displayTime(second) {
+    const min = Math.floor(second / 60);
+    const sec = Math.floor(second % 60);
+    timeH.innerHTML = `
+    ${min < 10 ? "0" : ""}${min}:${sec < 10 ? "0" : ""}${sec}
+    `;
+}
+function delay(time) {
+    return new Promise(resolve => setTimeout(resolve, time));
+  }
+  
+//
+function endCount() {
+  timeH.innerHTML = "Time out";
+}
+/* Set the width of the side navigation to 250px and the left margin of the page content to 250px */
+function openNav() {
+    document.getElementById("mySidenav").style.width = "250px";
+    document.getElementById("main").style.marginLeft = "250px";
+  }
+  
+  /* Set the width of the side navigation to 0 and the left margin of the page content to 0 */
+  function closeNav() {
+    document.getElementById("mySidenav").style.width = "0";
+    document.getElementById("main").style.marginLeft = "0";
+  }
 
-      if (confirm(text)) {
-        winner = "dp" + (playerIndex + 1) + "Name";
-        box.classList.replace("players", "winners");
-        
-        playerBoxes.forEach((otherBox, index) => {
-          if (index !== playerIndex && otherBox.classList.contains("winners")) {
-            otherBox.classList.replace("winners", "players");
-          }
-        });
+  const playerBoxes = [player1box, player2box, player3box, player4box];
 
-        const playerScore = window["dp" + (playerIndex + 1) + "Score"];
-        playerScore.innerHTML = "0";
-        timerSection.style.display = 'none';
-        hint.style.display = "none";
-        dialogSection.style.display = "grid";
+  playerBoxes.forEach((box) => {
+    box.addEventListener("click", () => {
         pauseCheck = true;
-        flashTrigger = false;
-
-        playerBoxes.forEach((otherBox, index) => {
-          const crown = window["p" + (index + 1) + "Crown"];
-          crown.style.display = (index === playerIndex) ? "grid" : "none";
-        });
+      document.body.style.animation = "";
+      if (startIcon.style.display == 'none') {
+        const playerIndex = playerBoxes.indexOf(box);
+        const playerName = window["p" + (playerIndex + 1) + "Name"];
+        const text = `${playerName} is the winner?`;
+  
+        if (confirm(text)) {
+          winner = "dp" + (playerIndex + 1) + "Name";
+          box.classList.replace("players", "winners");
+          
+          playerBoxes.forEach((otherBox, index) => {
+            if (index !== playerIndex && otherBox.classList.contains("winners")) {
+              otherBox.classList.replace("winners", "players");
+            }
+          });
+  
+          const playerScore = window["dp" + (playerIndex + 1) + "Score"];
+          document.body.style.backgroundColor = "#062D51ff";
+          playerScore.innerHTML = "0";
+          timerSection.style.display = 'none';
+          hint.style.display = "none";
+          dialogSection.style.display = "grid";
+          pauseCheck = true;
+          flashTrigger = false;
+          playerBoxes.forEach((otherBox, index) => {
+            const crown = window["p" + (index + 1) + "Crown"];
+            crown.style.display = (index === playerIndex) ? "grid" : "none";
+          });
+        }else {
+            pauseCheck = false;
+        }
       }
-    }
+    });
   });
-});
+
+// Time limit selector
+
+let selectedButton = null;
+
+function selectTime(limit) {
+  if (selectedButton) {
+    selectedButton.classList.remove('timeSelected');
+  }
+  selectedButton = document.getElementById(`btn${limit}`);
+  selectedButton.classList.add('timeSelected');
+  timeLimit = limit;
+}
+
 
 // player1box.addEventListener("click",()=>{
 //     if(timer.style.display == 'none'){
@@ -584,79 +673,4 @@ playerBoxes.forEach((box) => {
 //             p4Crown.style.display = "grid";
 //         }}
 // });
-
-
-
-
-timer.addEventListener("click",()=>{
-    p1ScoreDisplay.style.animation = "";
-    p2ScoreDisplay.style.animation = "";
-    p3ScoreDisplay.style.animation = "";
-    p4ScoreDisplay.style.animation = "";
-    pauseCheck = false;
-    flashTrigger = true;
-    timeSecond = 61;
-    document.body.style.animation = "flash 0.5s linear";
-    setTimeout(function(){document.body.style.animation = '';}, 2000);
-    document.body.style.backgroundColor = "#062D51ff";
-    delay(1000).then(()=> {timerSection.style.display = 'flex';
-    hint.style.display = "grid";
-    timer.style.display = 'none';
-    });
-});
-
-const countDown = setInterval(() => {
-    if (pauseCheck === false ) {
-        timeSecond--;
-    }
-    displayTime(timeSecond);
-    if (timeSecond<11 && flashTrigger == true){
-        document.body.style.animation = 'party 1s linear infinite';
-    }  
-    if (timeSecond == 0 || timeSecond < 1) {
-        endCount();
-        clearInterval(countDown);
-        document.body.style.animation = "";
-        document.body.style.backgroundColor = "rgb(225, 251, 254)";
-    }
-}, 1000);
-
-const pauseTimer = document.getElementById("pauseTimer");
-pauseTimer.addEventListener("click",()=>{
-    pauseCheck = !pauseCheck;
-    if (pauseCheck){
-        pauseTimer.innerHTML = "✔";
-    }else{
-        pauseTimer.innerHTML = "||";
-    }
-    
-})
-
-function displayTime(second) {
-    const min = Math.floor(second / 60);
-    const sec = Math.floor(second % 60);
-    timeH.innerHTML = `
-    ${min < 10 ? "0" : ""}${min}:${sec < 10 ? "0" : ""}${sec}
-    `;
-}
-function delay(time) {
-    return new Promise(resolve => setTimeout(resolve, time));
-  }
-  
-//
-function endCount() {
-  timeH.innerHTML = "Time out";
-}
-/* Set the width of the side navigation to 250px and the left margin of the page content to 250px */
-function openNav() {
-    document.getElementById("mySidenav").style.width = "250px";
-    document.getElementById("main").style.marginLeft = "250px";
-  }
-  
-  /* Set the width of the side navigation to 0 and the left margin of the page content to 0 */
-  function closeNav() {
-    document.getElementById("mySidenav").style.width = "0";
-    document.getElementById("main").style.marginLeft = "0";
-  }
-
 

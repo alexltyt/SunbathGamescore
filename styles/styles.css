@@ -54,6 +54,7 @@ body{
 }
 
 header{
+    /* margin-top: -0.5rem; */
     display: flex;
     flex-direction: row;
 }
@@ -185,7 +186,7 @@ main{
     justify-content:center;
     align-items: center;
     margin-top: 1rem;
-    margin-bottom: 0.3rem;
+    margin-bottom: 1rem;
     margin-left: 0;
 }
 .Namebtm{
@@ -441,6 +442,7 @@ html, body {
   /* The navigation menu */
   .sidenav a {
     padding: 8px 8px 8px 32px;
+    margin-bottom: 1rem;
     text-decoration: none;
     font-size: 2rem;
     color: var(--darker-blue);
@@ -570,3 +572,113 @@ html, body {
     background-image: linear-gradient(to right, var(--flame),var(--mandarin));
     color: var(--dark-blue);
 }
+
+/* Double or Triple slider for Big2 */
+
+.toggle-container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin: 20px;
+  }
+.toggle-container{
+    margin-right: 0.7rem;
+    font-size: 1rem;
+    color: var(--darker-blue);
+    font-family: 'Black Ops One', cursive;
+  }
+  
+  .switch {
+    position: relative;
+    display: inline-block;
+    width: 60px;
+    height: 34px;
+  }
+  
+  .switch input {
+    opacity: 0;
+    width: 0;
+    height: 0;
+  }
+  
+  .slider {
+    position: absolute;
+    cursor: pointer;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: var(--darker-blue);
+    -webkit-transition: .4s;
+    transition: .4s;
+    border-radius: 34px;
+  }
+  
+  .slider:before {
+    position: absolute;
+    content: "";
+    height: 26px;
+    width: 26px;
+    left: 4px;
+    bottom: 4px;
+    background-color: white;
+    -webkit-transition: .4s;
+    transition: .4s;
+    border-radius: 50%;
+  }
+  
+  input:checked + .slider {
+    background-color: var(--medium-blue);
+  }
+  
+  input:focus + .slider {
+    box-shadow: 0 0 1px #2196F3;
+  }
+  
+  input:checked + .slider:before {
+    transform: translateX(26px);
+  }
+  
+  /* Time Limit Selector for Rummikub*/
+
+  .timeLimitSelector{
+    margin-top: 3rem;
+  }
+  .time-button {
+    font-size: 1.2rem;
+    background-color: var(--light-blue);
+    border: none;
+    padding: 10px 20px;
+    margin: 5px;
+    cursor: pointer;
+    border-radius: 15%;
+  }
+  
+  .time-button.timeSelected {
+    background-color: var(--darker-blue);
+    color: white;
+  }
+
+  .button-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 1rem;
+  }
+  
+.timeLimitSelector > p {
+    text-align: center;
+    margin-right: 0.7rem;
+    font-size: 1.3rem;
+    color: var(--darker-blue);
+    font-family: 'Black Ops One', cursive;
+  }
+
+  .start-icon2{
+    text-align: center;
+}
+
+#timer-icon2{
+    font-size: 4rem;
+    text-align: center;
+  }
