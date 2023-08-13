@@ -6,6 +6,18 @@ Access the tool here: [https://alexltyt.github.io/sunbathgamescore/](https://ale
 
 Sunbath Game Score is a tool designed to help players record scores for two popular games: Big2 and Rummikub.
 
+## Main Features
+
+* **Customizable Player Names:** Personalize the gaming experience by assigning custom names to players.
+* **Per Round Score Display:** Track scores on a round-by-round basis, keeping the competition engaging.
+* **Undo Function:** Correct mistakes with ease using the undo feature, ensuring accurate scoring.
+* **Restore Previous Scores:** Retrieve and continue from previous gaming sessions effortlessly.
+* **Effortless Score Input:** Streamlined input process makes recording scores a breeze.
+* **Flexible Big2 House-Rules:** Tailor the game to your preferences with support for 2 main stream house-rules.
+* **Dynamic Countdown Timer:** Add excitement with an adjustable countdown timer for Rummikub.
+* **Last Winner Highlight:** Easily identify the last round's winner through intuitive UI highlights.
+
+
 ## Big2
 
 **Scoring Method: "Reverse Scoring - Relative"**
@@ -28,22 +40,23 @@ Similar to Big 2, Rummikub players aim to minimize points. However, in this vers
 ## Version History
 
 - **V2.1 (11 Aug 2023):**
+
   - Fixed the flashlight bug.
   - Fixed the timeout bug.
   - Added house-rules settings to Big2.
   - Added time limit selector to Rummikub.
-
 - **V2.0 (7 May 2023):**
+
   - Rewrote redundant code for improved readability.
   - Fixed flashing after selecting the winner and refined Winner().
-
 - **V1.2 (5 Jan 2023):**
+
   - Added an info icon explaining the use of the restore button.
   - Fixed undo function.
-
 - **V1.1 (23 Dec 2022):**
-  - Added a restore button to retrieve previous scores and player names stored in local storage.
 
+  - Added a restore button to retrieve previous scores and player names stored in local storage.
 - **V1.0 (21 Dec 2022):**
+
   - Initial version of the web app. Enjoy, and please report any bugs.
   - Happy playing!
