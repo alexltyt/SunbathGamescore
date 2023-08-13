@@ -452,6 +452,8 @@ startIcon.addEventListener('click', () => {
     p2ScoreDisplay.style.animation = '';
     p3ScoreDisplay.style.animation = '';
     p4ScoreDisplay.style.animation = '';
+    document.body.style.animation = "";
+    document.body.style.backgroundColor = "#062D51ff";
     
     if (timeSecond <= 0) {
         timeSecond = timeLimit;
