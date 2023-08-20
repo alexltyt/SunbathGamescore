@@ -171,7 +171,7 @@ editP1Name.addEventListener("click",()=>{
         document.getElementById("p1Name").innerHTML = p1Name;
         document.getElementById("p1Namebtm").innerHTML = p1Name;
         dp1Name.innerHTML = p1Name;
-        localStorage.p1Name = p1Name;
+        localStorage.big4P1Name = p1Name;
         reloadName();
     }
 });
@@ -188,7 +188,7 @@ editP2Name.addEventListener("click",()=>{
     document.getElementById("p2Name").innerHTML = p2Name;
     document.getElementById("p2Namebtm").innerHTML = p2Name;
     dp2Name.innerHTML = p2Name;
-    localStorage.p2Name = p2Name;
+    localStorage.big4P2Name = p2Name;
     reloadName();
     }
 });
@@ -206,7 +206,7 @@ editP3Name.addEventListener("click",()=>{
     document.getElementById("p3Name").innerHTML = p3Name;
     document.getElementById("p3Namebtm").innerHTML = p3Name;
     dp3Name.innerHTML = p3Name;
-    localStorage.p3Name = p3Name;
+    localStorage.big4P3Name = p3Name;
     reloadName();
     }
 });
@@ -223,7 +223,7 @@ editP4Name.addEventListener("click",()=>{
         document.getElementById("p4Name").innerHTML = p4Name;
         document.getElementById("p4Namebtm").innerHTML = p4Name;
         dp4Name.innerHTML = p4Name;
-        localStorage.p4Name = p4Name;
+        localStorage.big4P4Name = p4Name;
         reloadName();
     }
 });
@@ -234,23 +234,23 @@ submit.addEventListener("click", roundFinish);
 restoredata.addEventListener("click",()=>{
     let text = "Are you sure to restore data?";
     if (confirm(text) == true) {
-        p1Score = localStorage.p1Score;
+        p1Score = localStorage.big4P1Score;
         if(p1Score==undefined){p1Score = 0;}
-        p2Score = localStorage.p2Score;
+        p2Score = localStorage.big4P2Score;
         if(p2Score==undefined){p2Score = 0;}
-        p3Score = localStorage.p3Score;
+        p3Score = localStorage.big4P3Score;
         if(p3Score==undefined){p3Score = 0;}
-        p4Score = localStorage.p4Score;
+        p4Score = localStorage.big4P4Score;
         if(p4Score==undefined){p4Score = 0;}
-        p1Name = localStorage.p1Name;
+        p1Name = localStorage.big4P1Name;
         if(p1Name==undefined){p1Name = "Player1";}
-        p2Name = localStorage.p2Name;
+        p2Name = localStorage.big4P2Name;
         if(p2Name==undefined){p2Name = "Player2";}
-        p3Name = localStorage.p3Name;
+        p3Name = localStorage.big4P3Name;
         if(p3Name==undefined){p3Name = "Player3";}
-        p4Name = localStorage.p4Name;
+        p4Name = localStorage.big4P4Name;
         if(p4Name==undefined){p4Name = "Player4";}
-        scoreListRecord = JSON.parse(localStorage.scoreListRecord);
+        scoreListRecord = JSON.parse(localStorage.big4ScoreListRecord);
         showScore();
         document.getElementById("p1Name").innerHTML = p1Name;
         document.getElementById("p1Namebtm").innerHTML = p1Name;
@@ -420,11 +420,11 @@ function showScore(){
     setTimeout(()=>{p2ScoreDisplay.style.visibility = "visible"},700);
     setTimeout(()=>{p3ScoreDisplay.style.visibility = "visible"},700);
     setTimeout(()=>{p4ScoreDisplay.style.visibility = "visible"},700);
-    localStorage.p1Score = p1Score;
-    localStorage.p2Score = p2Score;
-    localStorage.p3Score = p3Score;
-    localStorage.p4Score = p4Score;
-    localStorage.scoreListRecord = JSON.stringify(scoreListRecord);
+    localStorage.big4P1ScoreScore = p1Score;
+    localStorage.big4P2ScoreScore = p2Score;
+    localStorage.big4P3ScoreScore = p3Score;
+    localStorage.big4P4ScoreScore = p4Score;
+    localStorage.big4ScoreListRecord = JSON.stringify(scoreListRecord);
 }
 
 function scoreboardDisplay(){
