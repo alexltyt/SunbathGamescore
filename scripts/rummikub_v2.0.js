@@ -424,6 +424,7 @@ function startCountdown() {
 
     countDown = setInterval(() => {
         if (pauseCheck === false && timeLeft > 0) {
+            document.body.style.animation = '';
             timeLeft--;
         }
         displayTime(timeLeft);
